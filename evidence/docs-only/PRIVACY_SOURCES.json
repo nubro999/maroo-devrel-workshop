@@ -1,0 +1,87 @@
+{
+  "label": "Docs Only",
+  "timestamp": "2026-09-26T14:28:24.215Z",
+  "pages": [
+    {
+      "url": "https://docs.maroo.io/concepts/privacy",
+      "httpStatus": 200,
+      "textSHA256": "30c819ec4741fe03a56c3de85fb1ef746d329ab73fc706a478fd0fb8d0c6772b"
+    },
+    {
+      "url": "https://docs.maroo.io/concepts/privacy/privacy-precompile-overview",
+      "httpStatus": 200,
+      "textSHA256": "0f0d2445bd4e000863b62104a6a848eeedeefe6934a64043146157705aa39727"
+    },
+    {
+      "url": "https://docs.maroo.io/apis/contract",
+      "httpStatus": 200,
+      "textSHA256": "8cca89e3e49d79cfbba250c258edb1662d2acf0b06f6e58c89f442ff5a3a1011"
+    },
+    {
+      "url": "https://docs.maroo.io/apis/contract/contract-privacy-deposit",
+      "httpStatus": 200,
+      "textSHA256": "57ac1a760f3a4391232ba365f4282bee25fc609889ea252fdb02a60bc58fffac"
+    },
+    {
+      "url": "https://docs.maroo.io/apis/contract/contract-privacy-transfer",
+      "httpStatus": 200,
+      "textSHA256": "77f400107fe39e05e9b4ea8f250fe8dc0c041286d323d7b16d98d216d366cc48"
+    },
+    {
+      "url": "https://docs.maroo.io/resources/network/testnet-access",
+      "httpStatus": 200,
+      "textSHA256": "e115594f56b23489431153287814c110827233e98a10f19453418ad94d0f7d6a"
+    },
+    {
+      "url": "https://docs.maroo.io/apis/json-rpc",
+      "httpStatus": 404,
+      "textSHA256": "fbb64eb15e4d518b16d58aa43378d83ea9c67bf7a45c5685417dc991c1421da8"
+    },
+    {
+      "url": "https://docs.maroo.io/concepts/privacy/privacy-policy-aware-precompile",
+      "httpStatus": 200,
+      "textSHA256": "b06f91d25c83c135865a252db0f263f359515cc97034616b3ce3dd1c28f0f6e7"
+    }
+  ],
+  "package": {
+    "name": "@maroo-chain/contracts",
+    "version": "0.0.9",
+    "integrity": "sha512-JrKcn0LrT09zzxySBv7+xANIshRRvEq2IaSeLFDSVQbdNj3hWT3RQvFQn4nC3V8ca4ZjZVBk7aOyATiUaKb6Uw=="
+  },
+  "releaseSurvey": {
+    "url": "https://github.com/DELIGHT-LABS/clairveil/releases/tag/v0.6.0",
+    "assets": [
+      {
+        "name": "clairveil-handoff-v0.6.0.tar.gz",
+        "bytes": 338653,
+        "digest": "sha256:f36ab994248804b7fb90dcfea440edcb4d5fc9413c5981cca4648a3a9ab66b8b"
+      },
+      {
+        "name": "clairveil-handoff-v0.6.0.tar.gz.sha256",
+        "bytes": 98,
+        "digest": "sha256:60b6befe22fe3571b9d86a3a82aa9e6a12f4869a17cfebf71ecfff0312e59efd"
+      },
+      {
+        "name": "clairveil-source-v0.6.0.tar.gz",
+        "bytes": 1291112,
+        "digest": "sha256:635af58f83cce00de01687fb0d9a887323f2e115bcdbe83aa848e59861dac2fe"
+      },
+      {
+        "name": "clairveil-source-v0.6.0.tar.gz.sha256",
+        "bytes": 97,
+        "digest": "sha256:7653aed8b129a9af41a8679d9ffa57f07e8da1f189b843d297551e9a2899b2ac"
+      }
+    ],
+    "handoffInspection": {
+      "digestVerified": true,
+      "runtimeArtifactExtensionsFound": [],
+      "checkedExtensions": [
+        ".pk",
+        ".vk",
+        ".r1cs"
+      ],
+      "limitation": "Inspection applies to the named v0.6.0 handoff archive, not every possible distribution channel."
+    }
+  },
+  "scope": "Reviewed these public pages, official npm distribution and release metadata. Missing prerequisites mean not identified within this scope, not proof they do not exist."
+}

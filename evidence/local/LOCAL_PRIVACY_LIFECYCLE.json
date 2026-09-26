@@ -1,0 +1,82 @@
+{
+  "label": "Local",
+  "timestamp": "2026-09-26T17:31:41.784753+00:00",
+  "chainId": "devrel-local-1",
+  "upstreamCommit": "af04cfc994a3da87a8b1b902eda0988feb512539",
+  "artifactKind": "locally generated development-only bundle",
+  "marooCompatibilityVerified": false,
+  "result": "PASS",
+  "flow": "deposit 10uclair -> transfer 7uclair -> recipient scan",
+  "receipts": [
+    {
+      "role": "deposit",
+      "hash": "D05552C2C45575D86056CBBA7A786E93F6B533E5021C4F4501EA0C69D29BF24B",
+      "height": "6",
+      "code": 0,
+      "gasUsed": "2794971",
+      "eventTypes": [
+        "coin_received",
+        "coin_spent",
+        "deposit",
+        "message",
+        "transfer",
+        "tx"
+      ]
+    },
+    {
+      "role": "transfer-preparation",
+      "hash": "49B7BD3C9B0CE9AB214EDA68C5B1C8772AEB8391B6A1EA303B17B7F2D8B1767D",
+      "height": "28",
+      "code": 0,
+      "gasUsed": "7606038",
+      "eventTypes": [
+        "batch_transfer",
+        "message",
+        "tx"
+      ]
+    },
+    {
+      "role": "transfer-final",
+      "hash": "8DFD44CB6FE53DE984F1CBDE3287B40BCD245B929D9CA5583B98411A1327D3DD",
+      "height": "31",
+      "code": 0,
+      "gasUsed": "3449340",
+      "eventTypes": [
+        "message",
+        "shielded_transfer",
+        "tx"
+      ]
+    }
+  ],
+  "walletSummaries": {
+    "alice": {
+      "before": {
+        "total_spendable": "10",
+        "spendable_count": 1,
+        "spent_count": 0,
+        "total_count": 1
+      },
+      "after": {
+        "total_spendable": "3",
+        "spendable_count": 1,
+        "spent_count": 3,
+        "total_count": 4
+      }
+    },
+    "bob": {
+      "before": {
+        "total_spendable": "0",
+        "spendable_count": 0,
+        "spent_count": 0,
+        "total_count": 0
+      },
+      "after": {
+        "total_spendable": "7",
+        "spendable_count": 1,
+        "spent_count": 0,
+        "total_count": 1
+      }
+    }
+  },
+  "excluded": "Private keys, note secrets, raw wallet dumps and encrypted payloads retained locally; no production or Maroo live claim."
+}

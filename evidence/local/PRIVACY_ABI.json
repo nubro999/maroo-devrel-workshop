@@ -1,0 +1,42 @@
+{
+  "label": "Local",
+  "timestamp": "2026-09-26T14:40:42.766Z",
+  "node": "v22.14.0",
+  "package": "@maroo-chain/contracts@0.0.9",
+  "tests": [
+    {
+      "name": "Pinned package ABI loads",
+      "status": "PASS"
+    },
+    {
+      "name": "Deposit outer ABI roundtrip with synthetic bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Transfer outer ABI roundtrip with synthetic fields",
+      "status": "PASS"
+    },
+    {
+      "name": "Transfer uint64 expiry overflow rejected by client encoder",
+      "status": "PASS"
+    },
+    {
+      "name": "Official InvalidAmount error selector decodes",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown error selector is not mislabelled",
+      "status": "PASS"
+    }
+  ],
+  "documentedImport": {
+    "status": "FAIL",
+    "code": "ERR_MODULE_NOT_FOUND",
+    "scope": "Documented path unavailable in pinned package 0.0.9; verified alternative used above."
+  },
+  "limitations": [
+    "Synthetic bytes are not valid Privacy requests or proofs.",
+    "ABI checks do not establish inner proof serialization or live verifier compatibility.",
+    "No transaction simulation, signing or broadcast."
+  ]
+}

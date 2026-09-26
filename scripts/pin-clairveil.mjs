@@ -1,0 +1,12 @@
+import { execFileSync } from 'node:child_process';
+import { writeFileSync } from 'node:fs';
+const dir = process.argv[2];
+if (!dir) throw new Error('Usage: npm run clairveil:pin -- <checkout-path>');
+const git = (...args) => execFileSync('git', ['-C', dir, ...args], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
+const origin = git('remote', 'get-url', 'origin');
+if (!['https://github.com/DELIGHT-LABS/clairveil.git', 'https://github.com/DELIGHT-LABS/clairveil'].includes(origin)) throw new Error('Unexpected upstream origin');
+const commit = git('rev-parse', 'HEAD');
+if (!/^[0-9a-f]{40}$/.test(commit)) throw new Error('Invalid SHA');
+if (git('status', '--porcelain')) throw new Error('Checkout has changes; document modifications before pinning');
+writeFileSync('demo/clairveil/upstream.json', JSON.stringify({ repository: 'https://github.com/DELIGHT-LABS/clairveil', commit, recordedAt: new Date().toISOString(), purpose: 'source-inspection', localFlowExecuted: false, marooCompatibility: 'unverified', license: 'Apache-2.0' }, null, 2) + '\n');
+console.log(`Recorded inspected commit ${commit}; execution remains unverified.`);

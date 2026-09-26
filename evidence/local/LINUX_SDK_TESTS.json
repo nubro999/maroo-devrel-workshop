@@ -1,0 +1,1155 @@
+{
+  "label": "Local",
+  "commit": "af04cfc994a3da87a8b1b902eda0988feb512539",
+  "environment": "Linux/WSL2; Go 1.25.13 linux/amd64",
+  "command": "go test -json -count=1 -p 2 -timeout 10m ./x/privacy/client/sdk/deposit ./x/privacy/client/sdk/transfer",
+  "lifecycleVerified": false,
+  "results": [
+    {
+      "Time": "2026-09-27T02:21:27.31542031+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestPreparedDepositProverPayloadRoundTripPreservesCircuitWitness",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:27.346649718+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestBuildAuditV2WitnessUsesNormalDepositNote",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:27.347744006+09:00",
+      "Action": "skip",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestAuditV2DepositWitnessSatisfiesP3R1CS",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.351546655+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestPreparedDepositProverPayloadPreservesZeroAmountAndCanonicalEncodings",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.357826779+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/wrong_version",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.359784615+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/uppercase_hex",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.359866667+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/0x_prefix",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.360496556+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/odd_length_hex",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.361854042+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/wrong_width_hex",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.362423257+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/malformed_point",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.362899343+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/off_curve_point",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.363856699+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/identity_point",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.364286338+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/non_subgroup_point",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.365673298+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/leading_zero_amount",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.366499429+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/non_decimal_amount",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.367608123+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/out_of_range_amount",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.368486471+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/noncanonical_asset_id",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.369505976+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/noncanonical_randomness",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.370683027+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/zero_commitment",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.372097225+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/noncanonical_commitment",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.376410527+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/amount_commitment_mismatch",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.379710117+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/key_commitment_mismatch",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.383350059+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/asset_id_commitment_mismatch",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.387810922+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses/randomness_commitment_mismatch",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.387853323+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProverPayloadRejectsInvalidWitnesses",
+      "Elapsed": 0.04
+    },
+    {
+      "Time": "2026-09-27T02:21:27.397831106+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs/wrong_proof_version",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.401944245+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs/response_commitment_mismatch",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.405855575+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs/malformed_proof_hex",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.410235475+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs/wrong_proof_size",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.414218665+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs/noncanonical_proof_frame",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:27.414257512+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Test": "TestValidatePreparedDepositProofRejectsInvalidVersionsBindingsAndProofs",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:27.422945845+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/deposit",
+      "Elapsed": 0.918
+    },
+    {
+      "Time": "2026-09-27T02:21:39.528118771+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestAuditV2FromPreparedPayloadReusesNormalTransferWitness",
+      "Elapsed": 0.17
+    },
+    {
+      "Time": "2026-09-27T02:21:39.591198431+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareAuditV2TransferAllowsThirdPartySecondOutput",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:39.591661805+09:00",
+      "Action": "skip",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestAuditV2TransferWitnessSatisfiesP3R1CS",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:39.714302721+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBroadcastTransferStepBuildsAndBroadcasts",
+      "Elapsed": 0.12
+    },
+    {
+      "Time": "2026-09-27T02:21:39.821538239+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBroadcastTransferStepPropagatesBroadcasterError",
+      "Elapsed": 0.11
+    },
+    {
+      "Time": "2026-09-27T02:21:39.874429545+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBroadcastTransferStepReturnsFailedTxResponse",
+      "Elapsed": 0.05
+    },
+    {
+      "Time": "2026-09-27T02:21:39.983114779+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildTransferMessageAssemblesLatestTransfer",
+      "Elapsed": 0.11
+    },
+    {
+      "Time": "2026-09-27T02:21:40.083902244+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildTransferMessageAllPrivateLeavesUserDisclosureEmpty",
+      "Elapsed": 0.1
+    },
+    {
+      "Time": "2026-09-27T02:21:40.083986923+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestParsePrivacyPolicy",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.08400747+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrivacyPolicyLabel",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.084609063+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestParseDisclosureMode",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.084873063+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestUserDisclosureModeLabel",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.08494136+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveRuntimeConfigAllPrivateRejectsDisclosureMode",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.085235117+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveRuntimeConfigPublicRejectsDisclosureKey",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.086130642+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveRuntimeConfigEncryptedResolvesTargets",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.086671543+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildUserDisclosureDataAllPrivateReturnsNil",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.091996834+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildUserDisclosureDataPublicPayloadVerifies",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.106534725+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildUserDisclosureDataEncryptedPayloadDecrypts",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.121406108+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildAuditDisclosureDataEncryptedPayloadDecrypts",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.135969694+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildSelfViewDisclosureDataEncryptedPayloadDecrypts",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.1595023+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestAuditAndSelfViewShareBlindedFullDigest",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:40.16295638+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildUserDisclosureDataEncryptedRequiresTargetKey",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.165441677+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildAuditDisclosureDataRequiresTargetKey",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.165505069+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildSelfViewDisclosureDataRequiresTargetKey",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.18347807+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestEncryptOutputNotesDecryptsWithMatchingViewKeys",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:40.201518413+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestEncryptOutputNotesWithViewTags",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:40.202583682+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestEncryptOutputNotesRejectsMissingViewKey",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.312044958+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildPreparedTransferPayloadAndProofRoundTrip",
+      "Elapsed": 0.11
+    },
+    {
+      "Time": "2026-09-27T02:21:40.412323276+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryBindsFinalEffectBeforeRelease",
+      "Elapsed": 0.1
+    },
+    {
+      "Time": "2026-09-27T02:21:40.479523386+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/input_nullifier",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.479768203+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/input_owner",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.48152909+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/asset",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.486259712+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/recipient_randomness",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.49208936+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/recipient_commitment",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.497687389+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/change_commitment",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.505255394+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/amount_conservation",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.505507938+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/user_blinding_reuses_randomness",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.505666901+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/full_blinding_reuses_randomness",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.505852691+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/full_blinding_reuses_user_blinding",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:40.513273662+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/user_disclosure_digest",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.527832502+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease/audit_disclosure_digest",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:40.527884401+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestJoinSplitStructuredSigningBoundaryRejectsSecretProjectionMutationBeforeRelease",
+      "Elapsed": 0.11
+    },
+    {
+      "Time": "2026-09-27T02:21:40.723395268+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferProofRejectsEmptyProof",
+      "Elapsed": 0.19
+    },
+    {
+      "Time": "2026-09-27T02:21:40.842750774+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildPreparedTransferProofRejectsExpiredPayloadBeforeProving",
+      "Elapsed": 0.12
+    },
+    {
+      "Time": "2026-09-27T02:21:40.939380134+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildPreparedTransferProofRejectsPayloadThatExpiresDuringProving",
+      "Elapsed": 0.09
+    },
+    {
+      "Time": "2026-09-27T02:21:41.075793337+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadToMsgRejectsExpiredProof",
+      "Elapsed": 0.14
+    },
+    {
+      "Time": "2026-09-27T02:21:41.13501051+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsHashMismatch",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:41.227132818+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataBindsViewTagsToHash",
+      "Elapsed": 0.09
+    },
+    {
+      "Time": "2026-09-27T02:21:41.227207235+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestGenerateTransferDisclosureBlindingsV1RetriesExactReuse",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.359481785+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/recipient_output_randomness_is_non-canonical",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.366141254+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/enabled_user_blinding_is_missing",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:41.369244079+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/full_blinding_is_missing",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.380724437+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/user_equals_recipient_output_randomness",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:41.383463873+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/full_equals_recipient_output_randomness",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.385801818+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse/full_equals_user",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.386126484+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsDisclosureBlindingReuse",
+      "Elapsed": 0.16
+    },
+    {
+      "Time": "2026-09-27T02:21:41.575199012+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataCanonicalizesAllPrivateUserBlinding",
+      "Elapsed": 0.19
+    },
+    {
+      "Time": "2026-09-27T02:21:41.698299499+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-spend/non-canonical",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.69833408+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-spend/identity",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.698371186+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-spend/non-subgroup",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.698423091+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-spend/oversized",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.698445736+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-view/non-canonical",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.698466823+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-view/identity",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.707502374+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-view/non-subgroup",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:41.707660906+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/input-view/oversized",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.709942608+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-spend/non-canonical",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.712400676+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-spend/identity",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.717029483+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-spend/non-subgroup",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.724622606+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-spend/oversized",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:41.727667374+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-view/non-canonical",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.730564754+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-view/identity",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.733942264+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-view/non-subgroup",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.740898389+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys/output-view/oversized",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:41.741006532+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadRejectsNonCanonicalPublicKeys",
+      "Elapsed": 0.17
+    },
+    {
+      "Time": "2026-09-27T02:21:41.801398497+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildPreparedTransferPayloadCanDisableSelfViewDisclosure",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:41.870759497+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsLegacyV1WithoutViewTags",
+      "Elapsed": 0.07
+    },
+    {
+      "Time": "2026-09-27T02:21:41.941205766+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsLegacyV1WithSelfView",
+      "Elapsed": 0.07
+    },
+    {
+      "Time": "2026-09-27T02:21:42.084143945+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestValidatePreparedTransferPayloadMetadataRejectsLegacyV2WithoutViewTags",
+      "Elapsed": 0.14
+    },
+    {
+      "Time": "2026-09-27T02:21:42.243650902+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestProvePreparedTransferPayloadRejectsMismatchedCommitment",
+      "Elapsed": 0.16
+    },
+    {
+      "Time": "2026-09-27T02:21:42.37025954+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestProvePreparedTransferPayloadRejectsMismatchedInputNullifier",
+      "Elapsed": 0.13
+    },
+    {
+      "Time": "2026-09-27T02:21:42.486729805+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferOwnerIntentBindsFinalPayloadAndExcludesCreator",
+      "Elapsed": 0.12
+    },
+    {
+      "Time": "2026-09-27T02:21:42.545471093+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferRejectsMalformedOwnerSignature",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:42.545920833+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestParseDecimalFieldRequiresCanonicalShieldedAmount",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.675538281+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferPayloadAndProofJSONRoundTrip",
+      "Elapsed": 0.12
+    },
+    {
+      "Time": "2026-09-27T02:21:42.675740035+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionReturnsFinalTransfer",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.675781062+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionReturnsSelfMerge",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.675866753+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionRequestsDummyWhenAllowed",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.677547883+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionRejectsDummyWhenDisabled",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.682129863+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionRejectsInsufficientFundsWithSummary",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.684849722+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionRejectsInsufficientFundsWithoutSameDenomNotes",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.68487955+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestRecursivePlannerDecisionRejectsRepeatedFingerprint",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.738647025+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferBuildsAssignmentAndOutputs",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:42.76613519+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsMerkleRootMismatch",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:42.775895027+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsOverTransfer",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:42.785240233+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsDuplicateInputBeforePathLookup",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:42.791410774+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsMixedOwnersBeforePathLookup",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:42.796600297+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsChangeAmountAboveShieldedLimit",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.822505276+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPrepareJoinSplitTransferRejectsInvalidPathHelper",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:42.853904334+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferFilesReplacePermissiveModes/payload",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:42.88624562+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferFilesReplacePermissiveModes/proof",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:42.886335369+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPreparedTransferFilesReplacePermissiveModes",
+      "Elapsed": 0.06
+    },
+    {
+      "Time": "2026-09-27T02:21:42.916623501+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestProveJoinSplitAssignmentUsesArtifactsAndRunner",
+      "Elapsed": 0.03
+    },
+    {
+      "Time": "2026-09-27T02:21:42.94340655+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestProveJoinSplitAssignmentPropagatesRunnerError",
+      "Elapsed": 0.02
+    },
+    {
+      "Time": "2026-09-27T02:21:42.943514966+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestExecuteRecursiveTransferFinishesWithFinalTransfer",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947351482+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestExecuteRecursiveTransferPreparesDummyAndRetries",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947386086+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestExecuteRecursiveTransferMergesThenWaitsThenFinishes",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947406834+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestDecodeDisclosurePubKeyHexDecodesValidPoint",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947436388+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestDecodeDisclosurePubKeyHexRejectsInvalidHex",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947471768+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestDecodeDisclosurePubKeyHexRejectsIdentityAndNonSubgroupPoints",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947763671+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveAuditDisclosureTargetUsesProvider",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947860959+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveAuditDisclosureTargetRejectsMissingConfig",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:42.947927371+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveAuditDisclosureTargetWrapsProviderError",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.13893095+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestExecuteTransferRunsFinalStepAndReturnsResponse",
+      "Elapsed": 0.19
+    },
+    {
+      "Time": "2026-09-27T02:21:43.235575475+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestExecuteTransferPropagatesBroadcastError",
+      "Elapsed": 0.1
+    },
+    {
+      "Time": "2026-09-27T02:21:43.246585985+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestEffectiveStepDisclosureConfigKeepsFinalTransferDisclosure",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:43.260433212+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestEffectiveStepDisclosureConfigForcesAllPrivateForSelfMerge",
+      "Elapsed": 0.01
+    },
+    {
+      "Time": "2026-09-27T02:21:43.380057432+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildTransferStepMessageForSelfMergeClearsUserDisclosure",
+      "Elapsed": 0.12
+    },
+    {
+      "Time": "2026-09-27T02:21:43.511762852+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestBuildTransferStepMessageForFinalTransferKeepsUserDisclosure",
+      "Elapsed": 0.13
+    },
+    {
+      "Time": "2026-09-27T02:21:43.511964393+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveRecipientRejectsTransparentAddress",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.514302871+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestResolveRecipientDecodesShieldedBundle",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.514612291+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSummarizeSpendableNotesByDenom",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.515189872+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestFindExactMatchSpendableNoteByDenomIgnoresDifferentDenom",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.5153419+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestFindExactMatchSpendableNoteByDenomUsesDeterministicOrder",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.515392909+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestPlannerStateFingerprintUsesSortedSameDenomSpendableNotes",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.517683109+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsFiltersDifferentDenomZeroNote",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.518390276+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsUsesSameDenomPairOnly",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.518518339+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsFallsBackToPositivePairWhenSingleNoteNeedsZero",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.518848218+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsChoosesSmallestSufficientPairDeterministically",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.518943885+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsRequiresDummyWhenPairWouldOverflowOutputAmounts",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.519049875+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputsChoosesLargestMergePairWhenNoFinalPairExists",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.519425217+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Test": "TestSelectInputBatchBacktracksAcrossOriginalOrder",
+      "Elapsed": 0
+    },
+    {
+      "Time": "2026-09-27T02:21:43.542737918+09:00",
+      "Action": "pass",
+      "Package": "github.com/DELIGHT-LABS/clairveil/x/privacy/client/sdk/transfer",
+      "Elapsed": 4.32
+    }
+  ]
+}

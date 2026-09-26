@@ -1,0 +1,80 @@
+{
+  "label": "Local",
+  "timestamp": "2026-09-26T16:06:11.460Z",
+  "coreAutocrlf": true,
+  "sourceModified": false,
+  "tests": [
+    {
+      "path": "x/privacy/crypto/internal/ctbn254/frct/fiat_p64.go",
+      "expected": "e5ab56d5bc1b0fa0ef6f94885c5a279680620085770c3821b9c9d1696711fb1c",
+      "diskSHA256": "99f68ad17012131123e461e06684198d2576104559faa3941a31391713f6832f",
+      "gitSHA256": "e5ab56d5bc1b0fa0ef6f94885c5a279680620085770c3821b9c9d1696711fb1c",
+      "normalizedLFSHA256": "e5ab56d5bc1b0fa0ef6f94885c5a279680620085770c3821b9c9d1696711fb1c",
+      "gitMatchesExpected": true,
+      "normalizedMatchesExpected": true
+    },
+    {
+      "path": "x/privacy/crypto/internal/ctbn254/scalarct/fiat_q64.go",
+      "expected": "cacf057e59044206a35180851d7de7da60cd02c68df984b9e89e6fd9369b534e",
+      "diskSHA256": "12c5ade3ed7d67b79a1022517c7efda4f862ba2b35e0c12c4c2871ab3c1dae74",
+      "gitSHA256": "cacf057e59044206a35180851d7de7da60cd02c68df984b9e89e6fd9369b534e",
+      "normalizedLFSHA256": "cacf057e59044206a35180851d7de7da60cd02c68df984b9e89e6fd9369b534e",
+      "gitMatchesExpected": true,
+      "normalizedMatchesExpected": true
+    }
+  ],
+  "correction": {
+    "description": "Restore only the two generated source files from exact HEAD blobs; algorithms and native guard unchanged",
+    "timestamp": "2026-09-26T16:08:41.739Z",
+    "exitCode": 0,
+    "rawSHA256": "e87e39eeda41006a3bab25001dae308e8ce10a0396a0ba2ab425c1f310053086",
+    "packages": [
+      {
+        "package": "github.com/DELIGHT-LABS/clairveil/x/privacy/crypto/internal/ctbn254/frct",
+        "status": "pass"
+      },
+      {
+        "package": "github.com/DELIGHT-LABS/clairveil/x/privacy/crypto/internal/ctbn254/scalarct",
+        "status": "pass"
+      }
+    ],
+    "tests": [
+      {
+        "name": "TestPinnedGeneratedSourceHash",
+        "status": "pass"
+      },
+      {
+        "name": "TestFrCanonicalEncoding",
+        "status": "pass"
+      },
+      {
+        "name": "TestPinnedGeneratedSourceHash",
+        "status": "pass"
+      },
+      {
+        "name": "TestScalarCanonicalEncodingAndNonzeroType",
+        "status": "pass"
+      },
+      {
+        "name": "TestFrArithmeticDifferentialAliasesAndInverse",
+        "status": "pass"
+      },
+      {
+        "name": "TestFrSecretFormattingIsRedacted",
+        "status": "pass"
+      },
+      {
+        "name": "TestScalarArithmeticReduceAndPoP",
+        "status": "pass"
+      },
+      {
+        "name": "TestSampleScalarPoliciesAndReaderError",
+        "status": "pass"
+      },
+      {
+        "name": "TestScalarSecretFormattingIsRedacted",
+        "status": "pass"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "label": "Live Testnet",
+  "timestamp": "2026-09-25T18:19:28.543Z",
+  "network": "maroo-testnet",
+  "node": "v22.14.0",
+  "platform": "win32",
+  "operation": "balance",
+  "status": "success",
+  "target": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+  "method": "eth_getBalance",
+  "blockNumber": 19091358,
+  "aokrw": "4999000000000000000000",
+  "tOKRW": "4999.0",
+  "stateChange": false
+}

@@ -1,0 +1,19 @@
+{
+  "label": "Live Testnet",
+  "timestamp": "2026-09-25T18:19:31.200Z",
+  "network": "maroo-testnet",
+  "node": "v22.14.0",
+  "platform": "win32",
+  "operation": "transfer-plan",
+  "status": "estimated",
+  "from": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+  "to": "0xA7B22eA2a4203E10F955b0FE5C52fBA5A96A4edA",
+  "valueAokrw": "1000000000000000000",
+  "beforeBlock": 19091360,
+  "senderBefore": "4999000000000000000000",
+  "recipientBefore": "0",
+  "gasLimit": "124510",
+  "gasPrice": "9000000000000",
+  "stateChange": false,
+  "broadcast": false
+}

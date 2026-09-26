@@ -1,0 +1,31 @@
+{
+  "name": "maroo-devrel-workshop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.14.0 <25"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "check:rpc": "node --experimental-strip-types demo/maroo/check-rpc.ts",
+    "balance": "node --experimental-strip-types demo/maroo/balance.ts",
+    "transfer:okrw": "node --experimental-strip-types demo/maroo/transfer-okrw.ts",
+    "explore:pcl": "node --experimental-strip-types demo/maroo/explore.ts pcl",
+    "explore:privacy": "node --experimental-strip-types demo/maroo/explore.ts privacy",
+    "clairveil:pin": "node scripts/pin-clairveil.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "secrets:check": "node scripts/check-secrets.mjs",
+    "privacy:public": "node scripts/verify-privacy-public.mjs",
+    "privacy:abi": "node scripts/verify-privacy-abi.mjs"
+  },
+  "dependencies": {
+    "@maroo-chain/contracts": "0.0.9",
+    "ethers": "6.17.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.4",
+    "typescript": "5.9.3"
+  }
+}
