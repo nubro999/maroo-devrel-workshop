@@ -1,6 +1,6 @@
 {
   "label": "Live Testnet",
-  "timestamp": "2026-09-26T14:36:50.186Z",
+  "timestamp": "2026-09-26T19:14:36.965Z",
   "node": "v22.14.0",
   "rpc": "https://rpc-testnet.maroo.io",
   "privacy": "0x100000000000000000000000000000000000000b",
@@ -56,15 +56,15 @@
       "name": "Privacy event counts in last 1000 blocks",
       "status": "PASS",
       "result": {
-        "fromBlock": 19162318,
-        "toBlock": 19163317,
+        "fromBlock": 19178706,
+        "toBlock": 19179705,
         "counts": {},
         "note": "No logs in this range does not establish absence of use. No encrypted note contents exported."
       }
     }
   ],
   "chainId": 450815,
-  "block": 19163317,
+  "block": 19179705,
   "documentedEvents": [
     "event PrivacyBatchTransferItem(address indexed effectiveSender, address indexed operator, bytes32 indexed batchId, uint64 itemIndex, bytes32 requestHash, bytes root)",
     "event PrivacyDeposit(address indexed effectiveSender, address indexed operator, string amount, bytes noteCommitment)",

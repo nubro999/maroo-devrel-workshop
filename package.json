@@ -18,11 +18,15 @@
     "test": "node --experimental-strip-types --test tests/*.test.ts",
     "secrets:check": "node scripts/check-secrets.mjs",
     "privacy:public": "node scripts/verify-privacy-public.mjs",
-    "privacy:abi": "node scripts/verify-privacy-abi.mjs"
+    "privacy:abi": "node scripts/verify-privacy-abi.mjs",
+    "lab:pcl": "node demo/pcl/run.mjs",
+    "lab:eas": "node demo/pcl/eas-run.mjs",
+    "lab:boolean": "node demo/pcl/eas-boolean.mjs"
   },
   "dependencies": {
     "@maroo-chain/contracts": "0.0.9",
-    "ethers": "6.17.0"
+    "ethers": "6.17.0",
+    "solc": "0.8.28"
   },
   "devDependencies": {
     "@types/node": "22.20.4",

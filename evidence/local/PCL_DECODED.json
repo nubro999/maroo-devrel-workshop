@@ -2,8 +2,8 @@
   "label": "Local",
   "operation": "Decode previously captured Live Testnet policy bytes using published ABI",
   "source": "evidence/live-testnet/PRIVACY_PUBLIC_PROBE.json",
-  "sourceTimestamp": "2026-09-26T14:36:50.186Z",
-  "block": 19163317,
+  "sourceTimestamp": "2026-09-26T19:14:36.965Z",
+  "block": 19179705,
   "package": "@maroo-chain/contracts@0.0.9",
   "enforcementVerified": false,
   "scopes": [

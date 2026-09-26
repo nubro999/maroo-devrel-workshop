@@ -489,3 +489,54 @@ PASS — 실제 RPC simulation에서 기대한 한도 경계와 정책 오류 �
 ## 016 — 공개 저장소 게시 준비
 
 사용자가 공개 게시 대상으로 https://github.com/nubro999 를 지정했다. 저장된 해당 계정 인증으로 nubro999/maroo-devrel-workshop을 생성했다. 원본 .env, .private, .external, node_modules와 지갑·artifact는 제외하고 공개 파일만 검토한다. 비밀 자동 검사 PASS. 영상은 아직 미등록이며 미완료 표시를 유지한다.
+
+
+## 검증 발견 — EAS 증명 내부의 false 값도 지급 통과
+
+**실행 결과, `false`도 지급이 통과했다. 이번 `EAS_POLICY` 설정은 불리언 값이 `true`인지 강제하지 않았다.**
+
+새 실험 스키마에서 동일 발신자·수신자·금액(0.001 tOKRW)·프록시·정책을 유지했다. `false`와 `true` 증명의 만료 시각과 부가 데이터도 동일하게 설정했고, EAS에 저장된 데이터 값을 직접 조회했다. `false` 증명을 폐기한 뒤 `true`를 발급하여 두 증명이 동시에 유효하지 않도록 했다. 스키마 resolver는 0 주소였다.
+
+| 조건 | 실제 포함 거래 결과 |
+|---|---|
+| 증명 없음 | status 0, EasNoAttestationReceived, 지급 없음 |
+| 유효한 false 증명 | status 1, PolicyCheckPassed, 수신자 +0.001 tOKRW |
+| false 증명 폐기 | status 0, EasAttestationRevoked, 추가 지급 없음 |
+| 유효한 true 증명 | status 1, PolicyCheckPassed, 수신자 +0.001 tOKRW |
+
+- [false 지급 성공 거래](https://explorer-testnet.maroo.io/tx/0x69f42f10fd795af26af78f717d676b1e6bba05d119e9886e786ffec706afc07b)
+- [true 지급 성공 거래](https://explorer-testnet.maroo.io/tx/0x9810ab00b4d6ec3dab6accd4aa5e2cb1c435bd1bc75a458bf8f039073b33a917)
+- [실행 기록](evidence/live-testnet/EAS_BOOLEAN_RESULT.json) / [독립 RPC 재조회](evidence/live-testnet/EAS_BOOLEAN_VERIFIED.json)
+
+**PoC 설계 의미:** 이 설정에서 승인 여부를 false 값으로 기록하는 것만으로는 지급을 차단할 수 없다. 유효한 증명 보유를 승인으로 사용하는 경우, 승인 대상에게만 증명을 발급하고 승인 취소 시 폐기하는 수명주기가 필요하다. 신뢰할 발급자 제한은 별도로 구현·검증해야 한다.
+
+**해석 범위:** 이 실험은 해당 스키마와 EAS_POLICY에서 불리언 true를 강제하지 않음을 보여준다. 다른 정책·resolver의 데이터 검사를 일반화하거나 제품 결함으로 단정하지 않는다. 실제 KYB 심사, 발급자 제한, 만료 후 차단, Privacy 지급은 이 실험에서 검증하지 않았다. 종료 시 두 증명 모두 폐기하고 프록시 정책을 이전 상태로 복원했다.
+
+
+## 017 — 최종 워크숍 패키지와 제출 자료 제작 (2026-09-27)
+
+### Goal
+[Workshop Design] Track B 전체 산출물을 최신 실제 증거와 맞추고 지원자의 직접 수행 항목을 구분한다. 이전 로그의 게시 대기·simulation-only 표시는 당시 상태이며 아래가 최신이다.
+
+### Initial Hypothesis
+[AI Hypothesis] EAS 데이터 true가 승인을 표현할 수 있다고 보았으나 비교 실행에서 false도 통과했다. 최종 시나리오는 유효한 자격 보유와 폐기에 맞춘다. 신뢰할 발급자 통제는 별도 미검증이다.
+
+### Source Grounding
+[Docs Only] Interview Brief Track B, docs.maroo.io PCL dual-track/EAS/Privacy, @maroo-chain/contracts 0.0.9, 고정 Clairveil SHA를 사용했다. 출처는 docs/RESEARCH_SYNTHESIS.md와 ATTRIBUTION.md 참조.
+
+### Execution
+[Live Testnet] 기존 PCL/EAS/불리언 실험과 독립 RPC 재조회 결과를 evidence/live-testnet에 보존했다. 이 패키징 단계에서 새 유료 거래를 실행하지 않았다.
+[Local] Node 22.14에서 타입 검사·단위 테스트 10개·3개 PCL 실행 파일 구문 검사 및 broadcast 없는 안전한 기본 실행을 확인했다. 신규 경로 설치 검증은 workshop/VALIDATION.md 참조.
+[Workshop Design] 22장 70분 워크숍 PPTX/PDF·진행 대본, 참가자/진행자/설치/문제해결 가이드, 7장 영상 PPTX/PDF·7분 목표 대본, 요구사항·증거·리서치·사용자 작업 목록을 작성했다.
+
+### Result
+PASS — 실제 검증 증거와 교육 자료 패키징. NOT TESTED — 최종 경로 버전의 추가 live 전송, 전체 사람 대상 리허설, Maroo Privacy 호환 지급·감사자 복호화. NOT DONE — 지원자 영상 녹화·업로드.
+
+### Diagnosis
+[DX Feedback] Explorer custom error 표시, 체험 시뮬레이션 안내, EAS 인덱싱과 데이터 조건 오해를 문서화했다. 관찰과 추정 원인을 구분하며 UI 내부 원인을 단정하지 않는다.
+
+### Next Step
+지원자는 자료 검토·리허설 후 5–8분 한국어 영상을 녹화·업로드하고 video-link.md에 실제 링크를 입력한 뒤 지정 채널로 제출한다.
+
+### Human Judgment
+사용자가 명시한 대상 우선 설계, PCL/Privacy 분리, false 비교 검증, 다음 단계 강의 제외와 UX 개선 제안을 반영했다. 영상·이해·독립 리허설이 완료되었다고 대신 주장하지 않는다.

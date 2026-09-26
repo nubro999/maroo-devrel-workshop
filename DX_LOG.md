@@ -113,3 +113,123 @@
 - Evidence: [연결 gate 표](docs/PRIVACY_VALIDATION.md), 공식 docs/패키지/release 조사 및 live 공개 조회.
 - 현재 영향: compatible circuit/PK/VK/PI mapping, state/witness query, known-good fixture를 확보하지 못해 valid Privacy 재현에 진입하지 못함.
 - Suggested improvement: 현재 배포와 묶인 versioned integration bundle 및 query/known-good tx 제공 경로 명시. production custody/운영 요구와 별도 설명.
+
+
+## DX-008 — Explorer에서 PCL 커스텀 오류를 읽을 수 있는 거절 사유로 표시
+
+**문제:** PCL이 지급 요청을 정상적으로 차단했지만, Explorer의 Revert reason → Decoded 영역에 읽을 수 없는 문자가 표시되어 개발자가 거절 이유를 알기 어렵다.
+
+- 상태: 실제 테스트넷 거래 및 사용자 제공 UI 출력으로 관찰. Explorer 소스·내부 디코딩 구현은 미확인.
+- 대상: 은행·핀테크 지급 PoC 개발자, 워크숍 참가자, 거래 실패를 확인하는 지원 담당자.
+- 심각도: 중간. 정책 집행 자체는 작동하지만 실패 원인 진단이 어려워진다. 평가 의견이며 영향 범위를 전체 오류로 일반화하지 않는다.
+- 제안 담당: Maroo Explorer 담당, PCL ABI·오류 설명 유지관리 담당.
+
+### 재현과 증거
+
+1. 다음 실제 테스트넷 실패 거래를 연다.
+   https://explorer-testnet.maroo.io/tx/0xa365d1866e419ed9a8d8ac635bbaf0ef2ed94900c70ff83d18fcadd84556628c
+2. Revert reason의 Raw와 Decoded 표시를 비교한다. 사용자 관찰 시 Decoded에는 제어문자·깨진 글자가 표시됐다.
+3. 아래 Raw 값을 `@maroo-chain/contracts@0.0.9`의 IPcl ABI로 해석한다.
+
+```text
+0x0201b218000000000000000000000000c4a50f04b3eb7b95f87639d6133db89e3cdc407c
+```
+
+```javascript
+import { Interface } from 'ethers';
+import { iPclAbi } from '@maroo-chain/contracts/abi/precompiles/pcl/IPcl';
+
+const raw = '0x0201b218000000000000000000000000c4a50f04b3eb7b95f87639d6133db89e3cdc407c';
+const error = new Interface(iPclAbi).parseError(raw);
+console.log(error.name, error.args[0]);
+// InDenylist 0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C
+```
+
+실행 증거: 블록 19180957, receipt status 0. 같은 블록에서 호출을 재검증해 InDenylist를 확인했고, 수신자 잔액 변화는 0이며 지급 횟수도 1에서 증가하지 않았다. [RPC 재검증 기록](evidence/live-testnet/PCL_PROXY_VERIFIED.json).
+
+### 사용자 영향
+
+개발자는 정상적인 정책 거절을 데이터 손상이나 원인 불명의 시스템 오류로 오해할 수 있다. 현재는 ABI를 찾아 별도 코드로 해석해야 하므로 Explorer만으로 실패 이유를 설명하기 어렵다. 잘못된 재시도나 불필요한 지원 문의로 이어질 가능성이 있다.
+
+### 개선 제안
+
+- 체인 배포 버전에 맞는 PCL 커스텀 오류 ABI를 지원해 selector와 인자를 구조적으로 표시한다.
+- 사람이 읽는 설명과 기술 정보를 함께 제공한다. 이 사례의 기대 표시는 다음과 같다.
+
+```text
+거절 사유: 차단 목록 조건에 해당하는 주소가 있어 지급이 거절되었습니다.
+오류: InDenylist(address)
+해당 주소: 0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C
+```
+
+- 원본 hex와 복사 기능을 유지한다. 주소 링크와 오류 문서 링크를 제공한다.
+- 알 수 없는 selector나 잘못된 인코딩은 “해석할 수 없는 커스텀 오류”로 표시한다. 바이너리 데이터를 읽을 수 없는 문자열로 제시하지 않는다.
+- AnyOfRejected처럼 하위 오류를 담는 경우 원본 구조를 보존하면서 각 원인을 펼쳐 볼 수 있게 한다.
+
+### 개선 완료 기준
+
+1. 위 거래가 InDenylist와 정확한 주소 인자로 표시된다.
+2. 알 수 없는 selector에서도 화면이 깨지지 않고 Raw가 보존된다.
+3. 일반 Error(string), Panic(uint256), 중첩 PCL 오류를 서로 구별한다.
+4. 원본 값과 디코딩된 값을 복사할 수 있다.
+
+### 원인 해석의 한계
+
+관찰된 표시는 바이너리 오류 데이터를 문자열로 처리했을 때의 증상과 일치한다. 다만 내부 구현을 조사하지 않았으므로 UTF-8 강제 변환을 확정 원인으로 단정하지 않는다. 본 항목은 거래 실패 자체가 아니라 오류 설명 UI의 개선 제안이다. 외부 이슈로 게시하지 않았다.
+
+
+## DX-009 — 체험 시작 안내 문구의 지속 노출 개선
+
+**문제:** Maroo Experience 한국어 체험에서 사용자가 진행 중에도 “체험을 시작할게요!”라는 문구가 채팅창에 계속 떠 있어 불편하다고 보고했다. 시작 안내가 현재 진행 단계와 맞지 않게 남아 있어 대화의 흐름을 방해한다.
+
+- 화면: https://experience.maroo.io/ko
+- 관찰일: 2026-09-27
+- 상태: 사용자 직접 체험 보고. 독립 재현·화면 캡처·내부 구현 확인은 미완료.
+- 대상: Maroo를 처음 체험하는 사용자 및 워크숍 참가자.
+- 심각도: 낮음, 잠정. 사용자가 불편을 보고했으나 기능 진행이 차단된 증거는 없음.
+- 제안 담당: Maroo Experience 프런트엔드·대화 UX 담당.
+
+### 관찰된 동작
+
+체험 중 “체험을 시작할게요!” 문구가 채팅창에 계속 노출된다. 동일 메시지가 여러 번 추가되는지, 고정 안내인지, 입력 제안인지, 대화 기록 한 건이 남아 있는지는 아직 구분하지 못했다. 반복 생성이나 특정 렌더링 오류를 확정 원인으로 단정하지 않는다.
+
+### 사용자 영향
+
+체험이 진행 중인데 시작 안내가 계속 보여 현재 단계와 화면 메시지가 어긋난다. 사용자에게 불필요한 시각적 방해가 되며, 다음 안내나 행동에 집중하기 어렵게 할 수 있다.
+
+### 개선 제안
+
+- 시작 안내의 표시 조건을 체험 시작 전 또는 최초 시작 시점으로 한정한다.
+- 안내 배너나 입력 제안이라면 시작 동작이 완료되거나 첫 실제 체험 단계로 전환될 때 숨긴다.
+- 실제 대화 메시지라면 기록은 유지하되 고정 표시·자동 재노출·중복 추가를 피하고, 필요하면 접어서 볼 수 있게 한다.
+- 진행 중 계속 필요한 안내 영역은 시작 문구 대신 현재 단계와 다음 행동을 보여준다.
+
+### 개선 완료 기준
+
+1. 시작 안내가 필요한 시점에만 표시된다.
+2. 첫 체험 단계 이후 시작 안내가 고정되거나 반복적으로 시선을 차지하지 않는다.
+3. 다음 단계 이동·재렌더링·세션 복귀로 동일 안내가 중복 추가되지 않는다.
+4. 사용자가 명시적으로 체험을 새로 시작하면 안내를 다시 볼 수 있다.
+5. 정상적인 대화 기록은 임의로 삭제하지 않는다.
+
+### 후속 재현 확인
+
+한국어 체험을 시작한 뒤 첫 안내·응답 및 다음 단계 전후의 화면을 비교한다. 문구가 어느 UI 요소에 속하는지와 최초 등장·지속·재등장 시점을 확인해 수정 위치를 특정한다. 현재 기록은 사용자 관찰에 근거한 UX 개선 제안이며 외부 이슈로 게시하지 않았다.
+
+
+## DX-010 — EAS 발급 성공과 정책 조회 가능 상태를 구분하는 가이드
+- 관찰 [Live Testnet]: 발급 직후 getAttestation은 존재하지만 isAttestationIndexed=false, received count=0. indexAttestation 이후 PCL 지급 성공.
+- 재현: EAS_LIFECYCLE_EAS_RESULT.json의 index-status-after-attest → index-attestation → credentialed-payment 순서를 확인한다.
+- 영향: 개발자가 발급 성공을 곧바로 PCL 자격 충족으로 오인한다.
+- 심각도: Medium. 담당 제안: EAS/PCL 문서·SDK 담당.
+- 개선: 공식 최소 예제에 인덱싱과 readback을 포함하고 자동/수동 인덱싱의 조건을 명시한다. SDK 자동화 여부는 별도 확인한다.
+- 수용 기준: 새 자격 발급부터 인덱싱·정책 성공까지 복사 가능한 예제와 단계별 실패 진단 제공.
+
+## DX-011 — EAS_POLICY가 검사하는 범위를 명시
+- 관찰 [Live Testnet]: 이번 resolver=0 스키마에서 bool false와 true 모두 지급 성공. 정책이 bool true를 강제하지 않았음.
+- 재현: EAS_BOOLEAN_EAS_RESULT.json의 false/true readback 및 포함 거래·잔액 변화 확인.
+- 영향: approved=false 증명 발급만으로 지급을 차단할 것으로 오인할 수 있다.
+- 심각도: High(통합 설계 오해의 영향). 담당 제안: PCL 문서·정책 템플릿 담당.
+- 개선: 자격 존재·유효성, 데이터 조건, 신뢰할 발급자 조건을 분리한 표와 승인/폐기 예제 제공.
+- 수용 기준: 템플릿별 검사·비검사 필드와 resolver/발급자 통제 책임이 명시됨.
+- 제품 결함 판정 아님. 확인된 설정의 동작과 문서 명확성 제안이다.

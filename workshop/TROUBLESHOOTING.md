@@ -1,28 +1,19 @@
 # Troubleshooting
 
-상태: **예상 실패 모드 가이드**. 아래 항목은 실제 발생한 장애 목록이 아니다. 재현된 사례만 SUBMISSION_NOTES의 DX Feedback에 증거와 함께 올린다.
-
-| 증상 | 가능한 원인 | 확인 방법 | 해결/다음 행동 |
+| 증상 | 원인·판정 범위 | 확인 | 대응 |
 |---|---|---|---|
-| 설치/TypeScript 실행 실패 | 지원하지 않는 Node, 미설치 의존성 | Node 버전과 package.json engines, npm 오류 확인 | 지원 버전에서 `npm ci` 후 typecheck; lock을 임의 변경하지 않음 |
-| RPC timeout/HTTP 오류 | endpoint·네트워크·서비스 장애 | `npm run check:rpc`, 시각·오류 기록 | 공식 docs 설정 확인, 제한적 재시도; 지속 시 정제된 이전 로그로 전환 |
-| chain ID 불일치 | 다른 네트워크 또는 잘못된 설정 | RPC 응답과 루트 설정 비교 | 올바른 테스트넷 확인 전 broadcast 중지 |
-| balance가 주소 오류로 실패 | MAROO_ADDRESS 누락/오타 | `.env.example`과 공개 주소 형식 확인 | 테스트넷 조회 주소 수정; 개인키를 주소 필드에 입력하지 않음 |
-| insufficient funds | 잔액/가스 부족 | 송신 주소 잔액, 금액, fee 추정 확인 | faucet 자산 보충 또는 금액 축소; 실제 자금 사용 금지 |
-| dry run 후 tx hash 없음 | 기본 비전송 모드 | 출력의 mode 확인 | 예상 동작임; 실제 테스트넷 송금 의도 시에만 `--broadcast` |
-| tx hash 있지만 실패/미확정 | 실행 revert, pending, 조회 지연 | 동일 hash의 receipt와 체인 상태 확인 | 상태 확정 전 중복 송금 금지; 실패 원인 기록 |
-| PCL 탐색에 정책 결과 없음 | docs-only placeholder | demo/maroo 안내와 명령 출력 확인 | 문서/권한/ABI 확인 후 별도 구현; mock 허용 결과를 만들지 않음 |
-| Privacy proof를 만들 수 없음 | 호환 circuit/artifact/query/serialization 미확인 | 필수 선행 자료를 URL·버전별 체크 | 최초 미확인 계층 기록 후 Clairveil local로 이동 |
-| 로컬 proof/scan 실패 | SHA·artifact·상태·키 불일치 가능 | upstream 해당 SHA 절차와 같은 실행의 상태 확인 | 버전 일치 확인; 임의 artifact 교체 금지; sanitized 오류 수집 |
-| 수취인이 note를 못 찾음 | 다른 수취 키, scan 범위/상태 불일치 가능 | 해당 버전의 수취·scan 설정과 tx 연결 확인 | 정확한 upstream 절차로 재검증; 다른 사람 키 수집 금지 |
-| secrets 검사 실패 | 비밀값 또는 탐지 의심 문자열 | 파일 경로와 redacted 결과 확인 | 실제 비밀이면 파일·Git 기록 제거와 폐기/교체; false positive는 근거 검토 |
+| explore:pcl에 Docs Only | 기존 안내용 placeholder. 관찰됨 | placeholder-no-network-call | privacy:public로 실제 정책 조회, decode-pcl-evidence로 해석 |
+| Type Stripping 경고 | Node 실험 기능 경고. 관찰됨 | 다음 출력·종료 코드 | 경고와 실행 실패를 구분 |
+| 체인 ID 불일치 | RPC 설정 오류 가능 | check:rpc, 450815 비교 | 올바른 테스트넷으로 수정 후 진행 |
+| insufficient funds | 지급액+가스 부족 | balance 및 추정 비용 | faucet 자금 준비. 정책 차단으로 세지 않음 |
+| EAS 발급했으나 자격 없음 | 인덱서 미등록 가능. 관찰됨 | getAttestation와 index count 비교 | indexAttestation 후 재조회 |
+| EasAttestationRevoked | 폐기된 증명. 관찰됨 | revocationTime | 의도한 거절인지 확인. 재시도 대신 자격 수명주기 점검 |
+| Explorer Decoded 깨진 문자 | 커스텀 오류 표시 문제. 사용자 관찰 | Raw를 IPcl ABI로 parseError | 오류 이름·주소를 함께 표시 |
+| false 증명인데 지급 성공 | 이번 정책은 bool true를 강제하지 않음. 관찰됨 | data 디코딩·receipt·잔액 | 승인된 대상만 발급·취소 시 폐기. 발급자 제한 별도 |
+| EEXIST 실행 디렉터리 | 이전 기록 덮어쓰기 방지 | .private/<실험> | 마지막 해시 확인 후 기록 보관·새 실행 |
+| submitted 이후 timeout | 포함 여부 불명 | hash로 receipt 조회 | 무조건 재전송 금지 |
+| 로컬 artifact/config 불일치 | 회로 identity·감사 설정·버전 차이 가능 | pinned SHA·manifest·node 로그 | 동일 번들과 새 전용 run-dir 사용 |
+| Windows native 빌드 실패 | 해당 native 지원 환경 문제. 관찰됨 | Unix syscall·secret profile 로그 | 검증된 Linux/WSL2 경로 |
+| Maroo Privacy proof 생성 불가 | 호환 artifact/query 미확보 | 공개 선행 자료 체크 | local reference 실습으로 전환, live 미완료 명시 |
 
-## 실패 분류
-
-1. 연결 이전 설정 오류: 아직 live 상호작용을 수행하지 않았을 수 있다.
-2. RPC 연결/조회 오류: 응답·시각·요청 종류를 보존한다.
-3. 입력/정책/proof 거부: 실제 반환 오류와 근거를 기록하고 원인을 단정하지 않는다.
-4. receipt 포함 후 revert: 상태 변경 성공이 아니다.
-5. 선행 artifact/query 부재: 아직 proof 생성 단계에 도달하지 못했다. 무효 payload를 보내야 할 이유가 없다.
-
-장애 시 진행자는 [대체 운영](FACILITATOR_GUIDE.md)을 적용한다. 로그 읽기에는 원래 실행 시각과 작성자를 표시하고, local/simulation을 live 성공 증거로 재분류하지 않는다.
+3분 이상 인프라 문제에 막히면 진행자는 실제 저장 증거 분석으로 전환합니다. 기존 기록을 당일 참가자 성공으로 표시하지 않습니다. 원시 provider 오류·키·note를 공개하지 않습니다.

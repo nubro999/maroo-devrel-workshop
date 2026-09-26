@@ -1,0 +1,15 @@
+{
+  "block": 19181501,
+  "addresses": {
+    "schemaRegistry": "0x1000000000000000000000000000000000000006",
+    "eas": "0x1000000000000000000000000000000000000007",
+    "indexer": "0x1000000000000000000000000000000000000008"
+  },
+  "privacySchema": {
+    "uid": "0x3e448d939524a8f3e6a403502e57ce60ee10146292114a58f4bfd1b1d35f527d",
+    "resolver": "0x6D2cBcFEeB6B6752C76D7eeB1cb4aD69aae58D6f",
+    "revocable": true,
+    "schema": "bytes32 kakaoIdHash, uint8 version"
+  },
+  "senderAttestationCount": "0"
+}

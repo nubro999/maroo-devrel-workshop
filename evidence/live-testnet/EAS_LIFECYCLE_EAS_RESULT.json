@@ -1,0 +1,245 @@
+{
+  "label": "Live Testnet",
+  "chainId": 450815,
+  "proxy": "0x88efE0F72e5C095FE98a925682692D7787B5062F",
+  "issuer": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+  "subject": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+  "limitation": "Self-issued workshop demo credential, not KYC/KYB or the existing Privacy credential",
+  "steps": [
+    {
+      "step": "register-demo-schema",
+      "phase": "submitted",
+      "hash": "0x8ba37ea8f164b0f5364d2bcb9e6e17e1466247f6fbbe9b943bc1ddccf988a1aa"
+    },
+    {
+      "step": "register-demo-schema",
+      "phase": "included",
+      "hash": "0x8ba37ea8f164b0f5364d2bcb9e6e17e1466247f6fbbe9b943bc1ddccf988a1aa",
+      "status": 1,
+      "block": 19181671,
+      "events": []
+    },
+    {
+      "step": "bind-eas-policy",
+      "phase": "submitted",
+      "hash": "0x1ddc34380c8af08ba4a60903f9772b798c04e7b20eb0b74eda22b28845950cc2"
+    },
+    {
+      "step": "bind-eas-policy",
+      "phase": "included",
+      "hash": "0x1ddc34380c8af08ba4a60903f9772b798c04e7b20eb0b74eda22b28845950cc2",
+      "status": 1,
+      "block": 19181673,
+      "events": [
+        {
+          "name": "ContractPoliciesChanged",
+          "args": [
+            "0x88efE0F72e5C095FE98a925682692D7787B5062F",
+            "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+            [
+              [
+                "EAS_POLICY",
+                "0x00000000000000000000000010000000000000000000000000000000000000070000000000000000000000001000000000000000000000000000000000000008357096f4e9e04dfa548b17487b7d0f7d59e8c39a851625468f308d4ffe497c18",
+                "0x0c11dedd"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "step": "missing-credential",
+      "code": "CALL_EXCEPTION",
+      "message": "execution reverted (unknown custom error)",
+      "decoded": {
+        "name": "EasNoAttestationReceived",
+        "args": [
+          "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C"
+        ]
+      }
+    },
+    {
+      "step": "missing-credential-broadcast",
+      "phase": "submitted",
+      "hash": "0x5a71c85ce976cc3a29e1df5f3ccf37f072f8c9551c898a6de9f4ebb8d5b60f16"
+    },
+    {
+      "step": "missing-credential-broadcast",
+      "phase": "included",
+      "hash": "0x5a71c85ce976cc3a29e1df5f3ccf37f072f8c9551c898a6de9f4ebb8d5b60f16",
+      "status": 0,
+      "block": 19181675,
+      "events": []
+    },
+    {
+      "step": "missing-credential-state",
+      "recipientDelta": "0",
+      "countBefore": "1",
+      "countAfter": "1"
+    },
+    {
+      "step": "issue-demo-attestation",
+      "phase": "submitted",
+      "hash": "0x34a981feee1ddc280d83135ad727cffc20b010c07b371a9d4dabacd92c49b25e"
+    },
+    {
+      "step": "issue-demo-attestation",
+      "phase": "included",
+      "hash": "0x34a981feee1ddc280d83135ad727cffc20b010c07b371a9d4dabacd92c49b25e",
+      "status": 1,
+      "block": 19181677,
+      "events": [
+        {
+          "name": "Attested",
+          "args": [
+            "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+            "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+            "0x00283ead9c7bd289f9e661e08806d9b4f667b03968c78b5f877b00191d092557",
+            "0x357096f4e9e04dfa548b17487b7d0f7d59e8c39a851625468f308d4ffe497c18"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "attestation-readback",
+      "attestation": {
+        "uid": "0x00283ead9c7bd289f9e661e08806d9b4f667b03968c78b5f877b00191d092557",
+        "schema": "0x357096f4e9e04dfa548b17487b7d0f7d59e8c39a851625468f308d4ffe497c18",
+        "time": "1790452079",
+        "expirationTime": "1790455677",
+        "revocationTime": "0",
+        "refUID": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "recipient": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+        "attester": "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+        "revocable": true,
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000001766aa8379d3c65a866640907960780dd182fc549f4a134e7d4456b0b3500f065"
+      }
+    },
+    {
+      "step": "index-status-after-attest",
+      "indexed": false,
+      "count": "0"
+    },
+    {
+      "step": "index-attestation",
+      "phase": "submitted",
+      "hash": "0xc7d72453444309321706dc5d38119effdf8d16c0592d9645a5d0d6e4f5d7601c"
+    },
+    {
+      "step": "index-attestation",
+      "phase": "included",
+      "hash": "0xc7d72453444309321706dc5d38119effdf8d16c0592d9645a5d0d6e4f5d7601c",
+      "status": 1,
+      "block": 19181680,
+      "events": []
+    },
+    {
+      "step": "credentialed-payment",
+      "phase": "submitted",
+      "hash": "0xf70621810d9137187400b4493233e597529a094029630f027a328cf1d56c698d"
+    },
+    {
+      "step": "credentialed-payment",
+      "phase": "included",
+      "hash": "0xf70621810d9137187400b4493233e597529a094029630f027a328cf1d56c698d",
+      "status": 1,
+      "block": 19181683,
+      "events": [
+        {
+          "name": "PolicyCheckPassed",
+          "args": [
+            "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+            "0x88efE0F72e5C095FE98a925682692D7787B5062F"
+          ]
+        }
+      ]
+    },
+    {
+      "step": "credentialed-state",
+      "recipientDelta": "1000000000000000",
+      "countBefore": "1",
+      "countAfter": "2"
+    },
+    {
+      "step": "revoke-demo-attestation",
+      "phase": "submitted",
+      "hash": "0x15fc86bf4cb6896994bc59b31fb3f83b7b24ebfa9c6e6ba68d8eefa2695ffba3"
+    },
+    {
+      "step": "revoke-demo-attestation",
+      "phase": "included",
+      "hash": "0x15fc86bf4cb6896994bc59b31fb3f83b7b24ebfa9c6e6ba68d8eefa2695ffba3",
+      "status": 1,
+      "block": 19181686,
+      "events": []
+    },
+    {
+      "step": "revoked-readback",
+      "revocationTime": "1790452088"
+    },
+    {
+      "step": "revoked-credential",
+      "code": "CALL_EXCEPTION",
+      "message": "execution reverted (unknown custom error)",
+      "decoded": {
+        "name": "EasAttestationRevoked",
+        "args": [
+          "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C"
+        ]
+      }
+    },
+    {
+      "step": "revoked-credential-broadcast",
+      "phase": "submitted",
+      "hash": "0x9f9f3beb6477036c846f7cf99c3856bf235822b59513c82b3cced6613003f532"
+    },
+    {
+      "step": "revoked-credential-broadcast",
+      "phase": "included",
+      "hash": "0x9f9f3beb6477036c846f7cf99c3856bf235822b59513c82b3cced6613003f532",
+      "status": 0,
+      "block": 19181689,
+      "events": []
+    },
+    {
+      "step": "revoked-credential-state",
+      "recipientDelta": "0",
+      "countBefore": "2",
+      "countAfter": "2"
+    },
+    {
+      "step": "restore-original-policy",
+      "phase": "submitted",
+      "hash": "0xcef532c58907cd3f1371d530c58de19fc7f20abec4b7f839c666a0ccdddfdf5a"
+    },
+    {
+      "step": "restore-original-policy",
+      "phase": "included",
+      "hash": "0xcef532c58907cd3f1371d530c58de19fc7f20abec4b7f839c666a0ccdddfdf5a",
+      "status": 1,
+      "block": 19181691,
+      "events": [
+        {
+          "name": "ContractPoliciesChanged",
+          "args": [
+            "0x88efE0F72e5C095FE98a925682692D7787B5062F",
+            "0xC4A50f04B3eB7B95f87639d6133Db89E3cdC407C",
+            [
+              [
+                "DENYLIST_POLICY",
+                "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000",
+                "0x0c11dedd"
+              ]
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "schemaText": "bool workshopDemoEligible, bytes32 run20260927",
+  "schemaUID": "0x357096f4e9e04dfa548b17487b7d0f7d59e8c39a851625468f308d4ffe497c18",
+  "attestationUID": "0x00283ead9c7bd289f9e661e08806d9b4f667b03968c78b5f877b00191d092557",
+  "passed": true,
+  "restored": true,
+  "totalFeeTOKRW": "17.810181"
+}

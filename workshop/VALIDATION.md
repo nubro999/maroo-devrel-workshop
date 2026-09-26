@@ -1,51 +1,30 @@
-# Validation — 실행 후 채우는 체크리스트
+# 검증 상태 — 2026-09-27
 
-상태: **RPC와 환경 검사는 실행 완료, 나머지 기능 검증은 미완료**. 상세 결과는 [환경 검증 기록](../evidence/local/SETUP_VALIDATION.md)을 참조한다. 스크립트 자체 검사와 Track B 기능 검증은 별도다. 실제 결과는 루트 SUBMISSION_NOTES와 evidence에 기록한다.
+| 검증 | 상태 | 근거와 범위 |
+|---|---|---|
+| Maroo 실제 전송 | PASS | evidence/live-testnet의 receipt·상태 재조회 |
+| PCL 프록시 허용/차단 | PASS | PCL_PROXY_RESULT, PCL_PROXY_VERIFIED |
+| EAS 미발급/발급/폐기 | PASS | EAS_LIFECYCLE 기록·독립 재조회 |
+| false/true 비교 | PASS | 둘 다 지급 통과; bool true 강제라는 가설은 반증 |
+| 로컬 Privacy 전체 흐름 | PASS | LOCAL_PRIVACY_LIFECYCLE.json |
+| 새 로컬 초기 상태 재현 | PASS | LOCAL_PRIVACY_REHEARSAL.json; 빌드/개발 artifacts 캐시 재사용 |
+| 타입 검사·단위 테스트 | PASS | Node 22.14, npm run typecheck, npm test(10개) |
+| 제출용 PCL 스크립트 구문·기본 실행 | PASS | 3개 구문 검사, --broadcast 없는 실행은 전송 없이 종료 |
+| 새 경로 설치·오프라인 검사 | PASS | 공개 파일만 새 경로로 복사 후 npm ci 성공, typecheck·10개 테스트 통과. 지갑 없이 설치 검증 |
+| 최종 경로 버전의 추가 live 재전송 | NOT TESTED | 실제 실행 원본을 상대 경로·고유 schema·명시적 broadcast 옵션·영수증 기반 실패 판정·복원 결과 확인을 반영해 패키징; 추가 수수료 거래를 반복하지 않음 |
+| 슬라이드 | PASS | 22장/70분·7장/7분 목표, PDF 육안 검토; PPTX의 타 PC 폰트 렌더링은 별도 |
+| 전체 참가자 70분 리허설 | NOT TESTED | 진행 시간은 설계값; 지원자 직접 리허설 필요 |
+| Maroo Privacy 지급·감사자 복호화 | NOT TESTED | 호환 proof·조회·serialization 미확보; 로컬 결과와 구분 |
+| 최종 녹화·공개 영상 링크 | NOT DONE | 지원자가 직접 녹화·업로드 |
 
-## 깨끗한 환경
+## 재시작·복구
 
-공개 제출 checkout을 새 디렉터리에 준비한다. 이전 `.env`, 계정, node_modules, 로컬 체인 상태를 복사하지 않는다. 루트 README의 런타임을 설치한다.
+Maroo 실행은 새 프록시와 새 schema를 사용한다. 기존 .private 실험 폴더를 보관용 이름으로 이동한 다음 새 실험을 시작한다. 이는 이전 체인 상태를 삭제하지 않는다. 성공 종료 시 실험 증명은 폐기되고 프록시 정책은 복원된다. 중단 시 저장된 hash·RESULT를 확인하고, 미포함/불명확 거래를 확인하기 전에 재전송하지 않는다. cleanup 실패 여부는 결과에 별도로 기록된다.
 
-```sh
-npm ci
-npm run setup
-npm run typecheck
-npm test
-npm run secrets:check
-```
+Privacy는 기존 run-dir을 재사용하지 않고 새 경로로 genesis·계정·감사 설정을 만든다. 고정 source와 개발 artifacts 및 빌드 캐시는 재사용할 수 있다. 원시 logs, 키, note/witness는 공개 패키지에서 제외한다.
 
-- [ ] OS·Node·npm 버전, 저장소 ref, package-lock을 기록했다.
-- [ ] `.env`가 추적되지 않고 `.env.example`에 비밀값이 없다.
-- [ ] Clairveil은 별도 ignored checkout이며 실제 SHA를 기록했다.
-- [ ] upstream 코드 사용 범위·라이선스를 확인했다.
+오프라인 대체 진행은 기존 증거를 분석한 것이며 참가자 자신의 실행 성공으로 기록하지 않는다.
 
-## 수동 스모크/증거
+## 최종 패키지 검사
 
-| 검증 | 통과 조건 | 증거 위치 | 상태 |
-|---|---|---|---|
-| RPC | 기대 체인·블록 응답 | evidence/live-testnet/RPC_CHECK.md | 성공 (read-only) |
-| 잔액 조회 | 요청 주소와 원시 잔액 일치 | evidence/live-testnet/BALANCE_READY.json | 과거 실행 성공; 현재 잔액 아님 |
-| transfer dry run | 전송되지 않고 대상/금액 검토 가능 | evidence/live-testnet/TRANSFER_PREVIEW.json | 과거 미리보기 성공; 서명/전송 없음 |
-| OKRW live 제출 | 실제 상태 변경 시도 기록; 성공/실패 구분 | evidence/live-testnet/OKRW_TRANSFER_VERIFIED.json | 과거 사용자 거래 재검증 PASS |
-| 송금 성공 판정 | receipt 성공과 수신자 잔액 변화 | evidence/live-testnet/OKRW_TRANSFER_VERIFIED.json | status 1, 수취 0→1 tOKRW |
-| PCL | 정책이 실행/거부를 바꾸는 근거와 비교 입력 | evidence/local/PCL_ESTIMATION_PROBE.json | RPC simulation 경계 PASS; 온체인 거부 아님 |
-| live Privacy 가능성 | circuit/artifact/query/serialization·호환성 확인 또는 누락 근거 | docs/PRIVACY_VALIDATION.md | 조사 범위의 누락 기록 완료; live 정상 흐름 BLOCKED |
-| local Privacy | 같은 SHA에서 deposit → transfer → recipient scan 연결 | evidence/local/LOCAL_PRIVACY_LIFECYCLE.json | Linux 실제 노드에서 PASS; Maroo 호환성 아님 |
-| 워크숍 리허설 | pre-work 후 60~75분 내 완료·실패 판정 가능 | evidence/local | 미실행 |
-
-실패 시에는 명령·입력(비밀 제거)·시간·환경·예상/실제·최초 실패 계층·다음 확인을 기록한다. CLI exit 0만으로 온체인 성공이나 PCL 강제를 판정하지 않는다. placeholder 종료는 기능 검증 통과가 아니다.
-
-## 초기화와 정리
-
-Maroo 테스트넷 기록은 로컬 정리로 삭제되지 않는다. 새 전용 계정/수신자를 쓰고 이전 tx는 증거로 보존한다. 같은 금액 재전송을 초기화로 취급하지 않는다.
-
-Clairveil 초기화는 고정 SHA의 upstream 절차를 확인한 뒤 해당 로컬 데이터 디렉터리에만 적용한다. 아직 검증된 reset 명령이 없으므로 임의 삭제 명령을 제공하지 않는다. 정리 전에 비밀이 없는 로그를 evidence에 옮기고, 실행 프로세스를 종료하고, 폐기할 로컬 테스트 키를 제거한다. 원본 로그·artifact·지갑 상태가 든 `.external`은 커밋하지 않는다.
-
-## 최종 판정
-
-- [ ] Primary B의 OKRW·PCL·Privacy 의미 있는 연결을 설명하고 실행/미실행을 구분했다.
-- [ ] Track B 상태 변경 실제 시도와 end-to-end privacy 증거를 확보했다.
-- [ ] live와 local의 결과를 합쳐 호환성/production 준비도를 주장하지 않았다.
-- [ ] git 전체 기록까지 비밀·실제 개인정보를 검토했다. 자동 검사만으로 완전한 탐지를 보장하지 않는다.
-- [ ] 영상 링크와 SHA, DX 3건, AI 오류 검증 사례가 실제 근거로 채워졌다.
-
+Solidity 0.8.28/paris 컴파일과 공식 ABI의 InDenylist custom error 해석을 오프라인 확인했다. 문서의 로컬 링크 누락은 0건이며, 공개 대상 파일에 실제 로컬 테스트 개인키가 포함되지 않았음을 별도로 검사했다. 자동 비밀 검사는 best effort이며 원시 키·노드 상태는 패키지에 포함하지 않는다.
