@@ -6,7 +6,7 @@
 | OKRW·PCL 의미 있는 실행 | demo/pcl, live evidence | 실제 정상/거절 거래 검증 |
 | Privacy end-to-end | LOCAL_RUN, local evidence | 로컬 실행·재현 완료 |
 | Live/Local 경계 | PRIVACY_VALIDATION, SUBMISSION_NOTES | 명시 |
-| 60–75분 패키지 | workshop PDF/PPTX·대본·참가자·진행자 | 70분 설계, 사람 리허설 대기 |
+| 60–75분 패키지 | workshop PDF/PPTX·대본·참가자·진행자 | 10장·70분 설계, 별도 실습 커맨드 사이트. 사람 리허설 대기 |
 | 오류 ≥5·fallback | TROUBLESHOOTING | 13개 항목 |
 | fresh setup·reset | SETUP, demo/pcl README, LOCAL_RUN | 절차 및 실행 기록 |
 | DX ≥3 | SUBMISSION_NOTES, DX_LOG | 확정/사용자 보고/가설 구분 |

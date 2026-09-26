@@ -1,5 +1,7 @@
 # 진행자 가이드
 
+슬라이드는 10장입니다. 커맨드는 [실습 웹사이트](https://maroo-workshop-cheatsheet.zcb167.chatgpt.site)로 분리했습니다. 은행 시스템 연결·Maroo 계층·프록시 호출·Privacy 구조는 다이어그램으로 설명합니다.
+
 70분은 설계값이며 전체 참가자 리허설은 미완료입니다. [참가자 시간표](PARTICIPANT_GUIDE.md)와 [슬라이드별 대본](Workshop_Speaker_Script.md)을 사용합니다. 프로그램 1(PCL·EAS)과 2(Privacy)는 별도 실행입니다. 별도 PoC 로드맵 강의는 없습니다.
 
 ## 준비

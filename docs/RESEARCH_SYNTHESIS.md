@@ -21,6 +21,9 @@
 
 ## 3. 읽어야 할 자료
 
+- [실습 커맨드 웹사이트](https://maroo-workshop-cheatsheet.zcb167.chatgpt.site): 복사 가능한 실행 명령과 판정 기준.
+- [Maroo Experience](https://experience.maroo.io/ko): 사용자가 경험한 시뮬레이션. 실제 EAS 자격 발급 증거와 구분.
+
 - [PCL 구조](https://docs.maroo.io/concepts/compliance/pcl-dual-track-model): 프록시·전역/서비스별 정책.
 - [EAS 튜토리얼](https://docs.maroo.io/guides/integration/tutorial-using-eas-on-maroo): 등록·발급·조회.
 - [EAS 인덱서](https://docs.maroo.io/concepts/identity/eas-indexer): 선택적 인덱싱. 실제 실험에서는 별도 indexAttestation 필요.
