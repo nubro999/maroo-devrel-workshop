@@ -20,3 +20,6 @@ artifacts/
 proofs/
 .DS_Store
 Thumbs.db
+
+# Office temporary owner files
+~$*

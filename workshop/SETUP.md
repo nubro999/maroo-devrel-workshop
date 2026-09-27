@@ -16,6 +16,6 @@ npm test
 
 lab:* 실행 수수료는 각 실험 100 tOKRW 상한을 두었으며 정상 관찰값은 각 18~28 tOKRW 수준이었습니다. lab:pcl→lab:eas 순서로 사전 리허설하고, 본 실습을 새로 시작할 때 해당 `.private` 실험 폴더는 보관용 이름으로 옮깁니다. 기존 폴더는 자동 덮어쓰지 않습니다.
 
-Privacy는 [LOCAL_RUN.md](../demo/clairveil/LOCAL_RUN.md)로 고정 SHA 소스·개발용 artifacts를 준비하고 실제 성공을 미리 확인합니다. 본 실습에서는 준비한 artifacts와 Go 빌드 캐시를 재사용할 수 있습니다. 실행 출력이 나온 기존 파일만 보고 본인의 성공으로 판정하지 않습니다.
+Privacy는 [LOCAL_RUN.md](../demo/clairveil/LOCAL_RUN.md)로 고정 SHA 소스·개발용 artifacts를 준비하고 실제 성공을 미리 확인합니다. 로컬 안내에 나온 GOPATH·GOCACHE 설정을 사전 준비부터 유지하면 같은 Go 캐시를 사용합니다. --artifacts만 지정하면 빌드 캐시까지 재사용되는 것은 아닙니다. 실행 출력이 나온 기존 파일만 보고 본인의 성공으로 판정하지 않습니다.
 
 준비 완료: RPC 응답 / 잔액 / 서명 계정 일치 / 새 실험 디렉터리 / 로컬 노드·아티팩트 리허설 / 키를 숨긴 화면 공유.

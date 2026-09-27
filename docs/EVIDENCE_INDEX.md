@@ -23,3 +23,7 @@ Explorer 주소는 `https://explorer-testnet.maroo.io/tx/<hash>`입니다. [PCL 
 ## 3. 보조 자료
 
 PCL_ESTIMATION_PROBE는 balance override가 있는 Simulation입니다. PRIVACY_PUBLIC_PROBE는 조회 증거로, Privacy 상태 변경 성공이 아닙니다. 과거 조사 파일은 기록 시점의 상태이며 현재 판정은 SUBMISSION_NOTES와 PRIVACY_VALIDATION을 우선합니다.
+
+## 사용자 직접 실행 — 2026-09-27
+
+[USER_PCL_RUN.json](../evidence/live-testnet/USER_PCL_RUN.json): 프록시 0xA2C2517c26503A31a4A6aD54402f6eDEbfA0184a, 정상 지급·Denylist 거절·복원. [읽는 법](GAS_AND_RESULTS.md). 사용자 로그와 로컬 결과 파일 기준이며 이 편집에서 별도 RPC 재검증하지 않았습니다.

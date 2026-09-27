@@ -7,10 +7,10 @@ npm ci
 npm run setup
 npm run check:rpc
 npm run lab:pcl
-npm run lab:pcl -- --broadcast
-npm run lab:eas -- --broadcast
+node demo/pcl/run.mjs --broadcast
+node demo/pcl/eas-run.mjs --broadcast
 # 추가 실험: false/true 값 비교
-npm run lab:boolean -- --broadcast
+node demo/pcl/eas-boolean.mjs --broadcast
 ```
 
 ## 무엇을 실행하는가?
@@ -25,7 +25,7 @@ EAS 데모는 문서의 등록·발급·조회 패턴을 기존 네이티브 지
 
 ## 성공 판정과 비용
 
-해시만 보지 말고 포함 영수증, PolicyCheckPassed, 수신자 잔액 변화 및 paymentCount를 확인합니다. 실패 사례는 의도적으로 실제 전송해 status 0 영수증을 얻으며 수수료가 발생합니다. historical 실험 수수료는 PCL 22.300173, EAS 17.810181, bool 비교 27.114012 tOKRW였습니다. 환경에 따라 달라집니다. 각 실행의 예상 최대 수수료 합계를 100 tOKRW로 제한합니다. 지급액은 별도입니다.
+해시만 보지 말고 포함 영수증, PolicyCheckPassed, 수신자 잔액 변화 및 paymentCount를 확인합니다. 실패 사례는 의도적으로 실제 전송해 status 0 영수증을 얻으며 수수료가 발생합니다. 기존 실험 수수료는 PCL 22.300173, EAS 17.810181, bool 비교 27.114012 tOKRW였습니다. 환경에 따라 달라집니다. 각 실행의 예상 최대 수수료 합계를 100 tOKRW로 제한합니다. 지급액은 별도입니다.
 
 산출물은 `.private/pcl-proxy/`, `.private/eas-privacy-run/`, `.private/eas-boolean-run/`에 저장됩니다. schema·프록시는 매 실행 새로 생성되며, 기존 디렉터리가 있으면 덮어쓰지 않고 중단합니다. 같은 테스트 계정을 여러 프로세스에서 동시에 사용하지 마세요.
 
@@ -37,4 +37,8 @@ EAS 데모는 문서의 등록·발급·조회 패턴을 기존 네이티브 지
 - 재실행 전 실행 기록을 보관하고 `.private` 안의 해당 실험 폴더를 다른 이름으로 이동합니다. lab:pcl부터 새 프록시로 다시 시작합니다. 다른 사용자의 상태나 전체 홈은 삭제하지 않습니다.
 - 로컬 폴더 변경은 체인 상태 초기화가 아닙니다.
 
-원 실행 스크립트로 실제 테스트넷 거래가 검증되었습니다. 제출용은 경로를 상대화하고 broadcast 명시 및 출력 덮어쓰기 방지, 영수증 기반 실패 판정 및 정책 복원 결과 확인을 추가했습니다. 포장 후 네트워크 쓰기 재실행 여부는 workshop/VALIDATION.md에 구분해 기록합니다.
+원 실행 스크립트로 실제 테스트넷 거래가 검증되었습니다. 제출용은 경로를 상대화하고 broadcast 명시 및 출력 덮어쓰기 방지, 영수증 기반 실패 판정 및 정책 복원 결과 확인을 추가했습니다. 제출용 코드의 실제 거래 재실행 여부는 workshop/VALIDATION.md에 구분해 기록합니다.
+
+## 출력이 어려울 때
+
+[지급 결과와 가스비 읽는 법](../../docs/GAS_AND_RESULTS.md)에서 볼 로그 세 가지와 실제 거래 예시를 확인하세요. PowerShell에서 npm이 --broadcast를 자체 옵션으로 처리한 사례가 있어, 전송 명령은 node 직접 실행을 권장합니다.

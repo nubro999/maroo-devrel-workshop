@@ -1,6 +1,6 @@
 # Submission Notes — Track B / Enable
 
-현재 제출 자료는 코드·증거·워크숍·슬라이드·대본까지 구성했습니다. 영상 녹화·업로드와 지원자 최종 리허설은 남아 있습니다. **PCL/EAS는 Maroo 실제 거래, Privacy는 Clairveil 로컬 실행으로 분리합니다.**
+코드, 실행 기록, 워크숍 자료와 발표 대본을 준비했습니다. 영상 녹화·업로드와 지원자 최종 리허설은 남아 있습니다. **PCL/EAS는 Maroo 실제 거래, Privacy는 Clairveil 로컬 실행으로 분리합니다.**
 
 ## Assumptions / Discrepancies
 
@@ -10,7 +10,7 @@
 - EAS는 자체 발급 실습 자격입니다. resolver가 없으며 실제 KYB·신뢰할 발급자 제한을 구현하지 않았습니다.
 - **유효한 false 증명도 지급이 성공했습니다. 이번 EAS_POLICY는 bool true를 강제하지 않았습니다.** 새 스키마·동일 계정/금액/만료/부가 데이터 조건에서 비교하고 온체인 데이터를 다시 읽었습니다. false 발급으로 차단하는 설계는 이 설정에서 작동하지 않습니다.
 - attest 직후 인덱서 count가 0이었고 별도 indexAttestation 후 지급이 통과했습니다. 공식 인덱서 문서는 선택적 등록을 설명하지만 통합 튜토리얼의 발급 흐름만으로 인덱싱을 보장하지 않습니다.
-- Privacy는 고정 Clairveil SHA의 개발용 아티팩트와 로컬 uclair를 사용했습니다. Maroo용 compatible artifact/query/serialization을 확보하지 못했으며 유효 proof를 제출하지 않았습니다.
+- Privacy는 고정 Clairveil SHA의 개발용 아티팩트와 로컬 uclair를 사용했습니다. Maroo용 호환 증명 자료·상태 조회·직렬화 방식을 확보하지 못했으며 유효 proof를 제출하지 않았습니다.
 - 사용자가 체험한 Maroo Experience 경로는 simulation입니다. 전체 사이트 기능을 부정하는 것이 아니라 해당 체험을 실제 EAS 발급 증거로 사용하지 않는다는 뜻입니다.
 - 공식 Privacy 상세 예제와 현재 패키지 간 import 경로·오류 설명 차이가 있습니다. 공식 ABI 0.0.9 및 실제 결과를 기록하고 문서 자리표시자를 실행 성공으로 취급하지 않았습니다.
 
@@ -20,7 +20,7 @@
 
 Ubuntu 24.04.3 / WSL2, Node 22.14.0, ethers 6.17.0, @maroo-chain/contracts 0.0.9, solc 0.8.28, Go 1.25.13. Clairveil SHA `af04cfc994a3da87a8b1b902eda0988feb512539`.
 
-원래 세션의 실행 스크립트로 아래 실제 테스트넷 거래를 만들었습니다. 제출용은 같은 실행 로직의 경로를 상대화하고 broadcast 명시·기존 출력 덮어쓰기 방지·영수증 기반 판정·복원 결과 확인을 추가했습니다. 포장 후 검증은 [VALIDATION](workshop/VALIDATION.md)에 구분합니다.
+원래 세션의 실행 스크립트로 아래 실제 테스트넷 거래를 만들었습니다. 제출용은 같은 실행 로직의 경로를 상대화하고 broadcast 명시·기존 출력 덮어쓰기 방지·영수증 기반 판정·복원 결과 확인을 추가했습니다. 제출용 코드의 검증은 [VALIDATION](workshop/VALIDATION.md)에 구분합니다.
 
 ```bash
 npm run lab:pcl -- --broadcast
@@ -33,6 +33,10 @@ npm run typecheck
 npm test
 npm run secrets:check
 ```
+
+### 사용자 직접 실행
+
+2026-09-27 사용자가 PowerShell에서 공개 PCL 스크립트를 직접 실행했습니다. 정상 지급과 Denylist 차단, 정책 복원을 확인했습니다. [실행 기록](evidence/live-testnet/USER_PCL_RUN.json)과 [로그·가스비 해설](docs/GAS_AND_RESULTS.md)을 참고하세요. 이 추가 실행은 EAS와 Privacy의 재검증을 뜻하지 않습니다.
 
 ### 실행 증거
 

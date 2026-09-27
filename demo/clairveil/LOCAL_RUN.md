@@ -22,6 +22,8 @@ Linux/WSL2, Git, Python 3, Go 1.25.13, 지원 CPU 명령(AES/PCLMULQDQ 등), 충
 ```bash
 SUBMISSION_DIR="$PWD"
 RUN_PARENT=$(mktemp -d /tmp/maroo-workshop.XXXXXX)
+export GOPATH="$RUN_PARENT/go"
+export GOCACHE="$RUN_PARENT/go-build-cache"
 git -c core.autocrlf=false clone https://github.com/DELIGHT-LABS/clairveil.git "$RUN_PARENT/source"
 git -C "$RUN_PARENT/source" checkout --detach af04cfc994a3da87a8b1b902eda0988feb512539
 GOTOOLCHAIN=go1.25.13 python3 "$SUBMISSION_DIR/demo/clairveil/run-local.py" \
@@ -56,3 +58,7 @@ PASS: Alice 10 -> 3; Bob 0 -> 7; included transactions code 0; repeated scan sta
 실패 시 작업 디렉터리의 해당 `.stderr`와 `node.log`를 로컬에서 확인한다. 공개할 때는 키·note·개인정보를 제거한다. 스크립트는 성공/실패 후 자신이 시작한 노드를 종료하며, 재현에 필요한 파일은 남긴다. 재실행은 새로운 `--run-dir`를 사용한다. 필요한 PUBLIC_RESULT를 보존한 후 본인이 만든 실행 디렉터리만 삭제한다. 다른 체인이나 사용자 홈은 초기화하지 않는다.
 
 이 스크립트는 정상 경로와 반복 scan을 검증한다. 이중 지출, 악의적 proof, 정책 집행, auditor 복호화 및 production 운영은 별도 검증 대상이다.
+
+## 같은 준비 환경에서 다시 실행하기
+
+위 명령을 실행한 같은 터미널에서 GOPATH와 GOCACHE를 유지하세요. --artifacts는 증명 자료를 재사용하는 옵션이며, Go 빌드 캐시를 지정하는 옵션은 아닙니다. 이 구분이 빠졌던 안내를 수정했습니다. 수정 후 전체 소요 시간은 아직 측정하지 않았습니다.

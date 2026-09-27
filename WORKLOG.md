@@ -595,3 +595,57 @@ PASS — 시각 자료·사이트 테마 변경. 상태 변경 거래·실습 �
 
 ### Human Judgment
 사용자가 이전 디자인을 거절하고 화이트·Maroo 코어 색 조합과 Canva 스타일을 명시했다.
+
+
+## 020 — 원문 기준 제출 감사 (2026-09-27)
+
+### Goal
+[Submission: Validation] 과제 원문 §6·§8·§10–11·§14–15와 최신 commit 5680b0e를 대조한다.
+
+### Initial Hypothesis
+[AI Hypothesis] 영상 외 요구도 대부분 충족했을 것으로 보았으나 캐시 재사용 안내의 코드 불일치와 설명 깊이 문제를 발견했다.
+
+### Source Grounding
+[Docs Only] 원문은 Maroo 상태 변경 + 로컬 Privacy 흐름을 허용하고, disclosure·키·신뢰 경계 설명 및 실제 5–8분 영상을 요구한다. 사이트·슬라이드 장수·고급 디자인은 필수가 아니다.
+
+### Execution
+[Live Testnet] 새 거래 없이 chain 450815와 기존 receipt 9건 status·block 재조회 일치.
+[Local] 타입 검사, 10개 테스트, broadcast 없는 3개 lab 기본 실행, history 비밀 검사 PASS. Markdown 로컬 링크 누락 0. PPTX 10/7장 확인. 빈 환경 변수에서 run-local.py의 환경 설정 부분을 평가해 매 run-dir별 GOPATH/GOCACHE가 달라짐을 재현했다. 전체 빌드 실행은 아니다.
+[Docs Only] 사이트 접근 정책은 owner 1명 custom, 실제 영상 URL 없음. disclosure 설명은 개요 수준이다.
+
+### Result
+PARTIAL — 핵심 실습·증거는 충족, 영상 필수 미충족. 캐시 기본 경로와 수업 시간 재현, 사이트 접근, disclosure 구체성 보완 필요. 최종 패키지의 추가 live E2E는 미검증이다.
+
+### Diagnosis
+캐시 문제는 제출 wrapper/가이드 계층이며 Maroo 체인 결함이 아니다. 사이트는 배포 성공이지만 공개 접근이 아니다. 실제 감사 복호화 실행을 필수로 오해하지 않고 설명 요구와 구분했다.
+
+### Next Step
+캐시 설정 보완·최종 명령 리허설, disclosure/키/권한 표, 외부 접근 동선, 실제 영상 완성. 상세 보고서는 현재 작업 outputs/과제_기준_검증_보고서.md에 저장했다.
+
+
+## 021 — 사용자 실습 기록과 문장 다듬기 (2026-09-27)
+
+### Goal
+[Submission: Workshop] 사용자가 이해하기 어려웠던 로그·Gwei·실패 수수료를 기록하고 문서와 실습 사이트의 문장을 개선한다.
+
+### Initial Hypothesis
+[AI Hypothesis] 명령→확인할 로그→결과 해석 순서와 짧은 문장이 실습 독해를 돕는다고 보고 자료를 재구성했다.
+
+### Source Grounding
+[Live Testnet] 사용자가 공유한 PowerShell 출력과 .private/pcl-proxy/RESULT.json이 일치하며 passed=true를 확인했다. USER_PCL_RUN으로 공개 결과만 보존했다.
+[Docs Only] Ethereum gas 설명과 Maroo litepaper의 네이티브 수수료 설명을 연결했다. Explorer 내부 단위 변환 원인은 단정하지 않았다.
+
+### Execution
+[Local] README·참가자·진행자·시나리오·제출 노트·영상 대본의 표현을 다듬었다. GAS_AND_RESULTS에 실제 정상/차단 거래 링크, 수취인 증가량 0, 실패 수수료 2.25 tOKRW를 기록했다. 사이트의 표시 명령과 복사 데이터를 함께 node 직접 실행으로 수정했다. LOCAL_RUN과 사이트에 공유 Go cache 변수를 추가했다. 실행 코드의 체인 로직은 바꾸지 않았다.
+
+### Result
+PASS — 사용자 PCL 로그·로컬 결과 파일 대조와 문서 반영. 이 편집에서 새 거래를 전송하지 않았다. NOT TESTED — 공유 cache 수정 후 전체 실행 시간, EAS·Privacy 최종본의 새 실행.
+
+### Diagnosis
+[Submission: DX Feedback] Gwei의 의미·실패 수수료·npm 옵션 전달은 각각 설명과 도구 계층의 문제로 구분했다. 기존 감사에서 지적한 cache 경로를 안내에 고정했지만 재실행 측정 완료로 표시하지 않았다.
+
+### Next Step
+사용자는 로그 해설을 읽고 EAS 실습으로 진행할 수 있다. 실제 녹화·사이트 공개 선택·전체 시간 리허설은 남아 있다.
+
+### Human Judgment
+사용자가 PCL 스크립트를 직접 실행하고 정상/거절 거래를 열어 확인했다. 가스 단위와 실패 수수료 설명을 문서화하고 산출물 전반의 문장을 다듬도록 요청했다.

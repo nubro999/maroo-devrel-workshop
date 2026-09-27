@@ -3,6 +3,8 @@
 | 증상 | 원인·판정 범위 | 확인 | 대응 |
 |---|---|---|---|
 | explore:pcl에 Docs Only | 기존 안내용 placeholder. 관찰됨 | placeholder-no-network-call | privacy:public로 실제 정책 조회, decode-pcl-evidence로 해석 |
+| npm이 --broadcast를 자체 옵션으로 처리 | 사용자 PowerShell에서 관찰. npm·셸 조합의 정확한 원인은 미확인 | 실제 실행 줄에 --broadcast가 빠지고 No transaction sent 표시 | node demo/pcl/run.mjs --broadcast로 직접 실행 |
+| 실패했는데 수수료 차감 | 블록에 포함된 실패 거래도 수수료 발생 | status 0, fee, 수취인 증가량을 각각 확인 | 지급액과 처리 수수료를 구분. [해설](../docs/GAS_AND_RESULTS.md) 참고 |
 | Type Stripping 경고 | Node 실험 기능 경고. 관찰됨 | 다음 출력·종료 코드 | 경고와 실행 실패를 구분 |
 | 체인 ID 불일치 | RPC 설정 오류 가능 | check:rpc, 450815 비교 | 올바른 테스트넷으로 수정 후 진행 |
 | insufficient funds | 지급액+가스 부족 | balance 및 추정 비용 | faucet 자금 준비. 정책 차단으로 세지 않음 |
