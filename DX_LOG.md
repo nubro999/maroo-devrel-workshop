@@ -252,3 +252,10 @@ console.log(error.name, error.args[0]);
 - 원인 범위: npm·셸 옵션 전달 계층. 버전별 상세 원인은 미확인이다.
 - 개선: 참가자 문서와 사이트를 node 직접 실행 명령으로 통일했다.
 - 담당: 워크숍 자료 유지관리자. Maroo 체인 오류로 분류하지 않는다.
+
+## DX013 — 실습 참가자 동선의 불필요한 설명과 입력 부담
+- Problem: 관찰 수수료·연구 결과·참고 링크가 실행 순서를 가렸다. 환경 파일을 수동 입력해야 했다.
+- Evidence: 사용자 피드백으로 macOS/Linux 전체 경로와 5개 계정 준비 요청.
+- Affected developer: 워크숍 참가자.
+- Severity: 높음 — 첫 실행에 도달하기 전에 이탈할 수 있음.
+- Suggested improvement: 순서대로 복사 가능한 명령, OS별 준비 안내, 로컬 계정 파일에서 .env 생성, 공통 Privacy 컨테이너.

@@ -675,3 +675,30 @@ PASS — 사용자 PCL 로그·로컬 결과 파일 대조와 문서 반영. 이
 
 ### Human Judgment
 사용자가 false 통과를 핵심 시연으로 삼는 것에 이의를 제기하고, 승인 상태 중심 재구성을 요청했다.
+
+## 023 — 참가자용 실습 동선과 계정 준비
+
+### Goal
+[Submission: Workshop] 관찰·리서치 설명을 제거하고 macOS/Linux의 전체 실습 경로와 5개 참가자 계정을 준비한다.
+
+### Initial Hypothesis
+[AI Hypothesis] 동일 Docker 경로와 개인별 계정 파일을 사용하면 설치·입력 부담을 줄일 수 있다.
+
+### Source Grounding
+[Docs Only] Docker 공식 문서의 다중 아키텍처 지원 및 고정 Clairveil 소스. macOS 실기기 전체 실행은 미검증.
+
+### Execution
+[Live Testnet] 기존 테스트 지갑에서 별도 생성한 지급자 5개에 각각 250 tOKRW 입금. receipt status 1과 각 잔액 250 확인. 공개 증거는 PARTICIPANT_FUNDING.json. 개인키는 공개 저장소·배포 사이트에 포함하지 않는다.
+[Local] 사이트를 환경·계정·PCL/EAS·Privacy 순서로 재구성. 브라우저 내부 계정 파일 읽기, 주소 복사, .env 다운로드. macOS/Linux 공통 Docker 경로 추가.
+
+### Result
+PASS — 5개 입금 및 Docker 이미지 빌드. 전체 컨테이너 실행 결과는 후속 검증으로 기록한다. NOT TESTED — macOS 실기기.
+
+### Diagnosis
+기존 문서는 참가자의 실행 절차와 리서치 결과가 섞여 있었다. PowerShell 전체 불가로 일반화하지 않고 Bash 명령·경로 처리 차이 때문에 본 가이드에서 제외한다고 설명했다.
+
+### Next Step
+컨테이너 전체 실행과 웹 UI를 검증한 뒤 Vercel에 반영한다.
+
+### Human Judgment
+사용자는 macOS/Linux 모두 전체 실습을 진행할 수 있어야 하며, 5세트를 준비하도록 지정했다.
