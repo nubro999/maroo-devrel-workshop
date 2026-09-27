@@ -2,9 +2,102 @@
 cd maroo-devrel-workshop
 npm ci
 npm run setup</code></pre><p class="result">이후 모든 명령은 이 폴더에서 실행하세요.</p></article></section><section id="account"><h2>2. 내 계정 불러오기</h2><p>진행자에게 받은 <strong>participant-N.json</strong>을 선택하세요. 파일은 이 브라우저 안에서만 읽습니다.</p><label class="upload">계정 파일 선택<input id="account-file" type="file" accept=".json,application/json"></label><p id="account-status" role="status">아직 선택한 계정이 없습니다.</p><div id="account-details" hidden><div class="address"><span>지급자</span><code id="payer"></code><button data-copy="payer">주소 복사</button></div><div class="address"><span>수취인</span><code id="recipient"></code><button data-copy="recipient">주소 복사</button></div><div class="actions"><button id="download-env">.env 다운로드</button><button id="copy-env">.env 내용 복사</button><button id="clear-account" class="secondary">계정 닫기</button></div><p class="fine">다운로드한 maroo-lab.env를 아래 명령으로 적용하세요. 다운로드 폴더를 바꿨다면 경로도 바꾸세요. 개인키가 포함되어 있으니 본인 파일만 사용하고 공유하지 마세요.</p><div class="command"><div class="command-head"><h3>계정 설정 적용</h3><button data-copy="env-install">명령 복사</button></div><pre><code id="env-install">cp "$HOME/Downloads/maroo-lab.env" .env
-chmod 600 .env</code></pre></div></div></section><section id="pcl"><h2>3. 정책으로 지급 통제하기</h2><p>Maroo 테스트넷에서 실행합니다. 테스트 토큰이 사용됩니다.</p><article class="command" id="step02"><div class="command-head"><span class="num">02</span><h3>연결 확인</h3><button data-copy="c02">명령 복사</button></div><pre tabindex="0"><code id="c02">npm run check:rpc
-npm run balance</code></pre><p class="result">chain ID 450815와 지급자 잔액을 확인하세요.</p></article><article class="command" id="step03"><div class="command-head"><span class="num">03</span><h3>지급 허용·차단</h3><button data-copy="c03">명령 복사</button></div><pre tabindex="0"><code id="c03">node demo/pcl/run.mjs --broadcast</code></pre><p class="result">성공: recipientDelta가 양수. 차단: status 0, recipientDelta 0, 지급 횟수 유지.</p></article><article class="command" id="step04"><div class="command-head"><span class="num">04</span><h3>자격 발급·폐기</h3><button data-copy="c04">명령 복사</button></div><pre tabindex="0"><code id="c04">node demo/pcl/eas-run.mjs --broadcast</code></pre><p class="result">자격 없음: 실패 → 발급·인덱싱: 성공 → 폐기: 실패. 03번 성공 후 실행하세요.</p></article><details><summary>이미 실행한 실습을 다시 하려면</summary><p>기존 실행 결과는 덮어쓰지 않습니다. <a href="https://github.com/nubro999/maroo-devrel-workshop/blob/main/demo/pcl/README.md">실행 폴더 보관 안내</a>를 확인하세요.</p></details></section><section id="privacy"><h2>4. 비공개 지급 실행하기</h2><p>macOS와 Linux 모두 같은 Docker 명령을 사용합니다. 별도 로컬 체인에서 Alice 10 → Bob 7 → 잔액 3 / 7을 확인합니다.</p><p class="fine">Docker에 메모리 8GB 이상을 배정하세요. macOS 실기기 전체 실행은 아직 검증하지 않았습니다.</p><article class="command" id="step05"><div class="command-head"><span class="num">05</span><h3>Privacy 환경 만들기</h3><button data-copy="c05">명령 복사</button></div><pre tabindex="0"><code id="c05">docker build -t maroo-privacy-lab -f demo/clairveil/container/Dockerfile demo/clairveil</code></pre><p class="result">처음 한 번 실행합니다. Docker가 실행 중이어야 합니다.</p></article><article class="command" id="step06"><div class="command-head"><span class="num">06</span><h3>비공개 지급 실행</h3><button data-copy="c06">명령 복사</button></div><pre tabindex="0"><code id="c06">mkdir -p .private/privacy-container
-docker run --rm --init -e LAB_UID="$(id -u)" -e LAB_GID="$(id -g)" \
+chmod 600 .env</code></pre></div></div></section><section id="pcl"><h2>3. 직접 작성하는 PCL · EAS</h2><p>작성한 코드로 한 거래씩 실행합니다. A–C는 같은 Node 콘솔을 유지하세요.</p><p class="fine">직접 작성: 지급 함수 · 정책 설정 · 자격 요청 · 결과 검증. 제공: ABI · 연결 · 컴파일 · 한 거래 전송 도우미.</p><details class="lesson" open><summary>A · 지급 컨트랙트 작성·배포</summary><article class="command"><div class="command-head"><h3>A1. 지급 함수를 직접 구현</h3><button data-copy="lab0">복사</button></div><p class="result"><strong>OS 터미널 → 코드 편집기</strong><br>직접 할 부분: Payment.sol의 pay 함수: 호출 경로·권한·금액 검사, 송금, 이벤트</p><pre tabindex="0"><code id="lab0">mkdir -p .private/terminal
+cp workshop/terminal/Payment.todo.sol .private/terminal/Payment.sol
+# .private/terminal/Payment.sol을 편집기로 열어 TODO를 채우세요.
+# 비교용 예시: workshop/terminal/Payment.solution.sol</code></pre><p class="result">확인: 제공: 초기화 코드. 직접 작성: pay 함수. 예시를 통째로 실행하기 전에 각 require가 막는 요청을 설명하세요.</p><details><summary>막히면 pay 함수 본문 예시 보기</summary><pre><code>require(address(this) != implementation, &quot;proxy only&quot;);
+require(msg.sender == owner, &quot;owner only&quot;);
+require(msg.value &gt; 0, &quot;amount&quot;);
+paymentCount++;
+(bool ok,) = recipient.call{value: msg.value}(&quot;&quot;);
+require(ok, &quot;payment failed&quot;);
+emit Paid(msg.sender, recipient, msg.value);</code></pre><p class="result">TODO의 revert 줄을 지우고 이 로직을 구현하세요.</p></details></article><article class="command"><div class="command-head"><h3>A2. 터미널에서 Node 콘솔 열기</h3><button data-copy="lab1">복사</button></div><p class="result"><strong>OS 터미널</strong><br>직접 할 부분: 이후 JavaScript는 Node의 &gt; 프롬프트에 입력합니다.</p><pre tabindex="0"><code id="lab1">node --env-file=.env</code></pre><p class="result">확인: 이 콘솔을 유지하세요. OS 명령으로 돌아갈 때는 .exit를 입력합니다.</p></article><article class="command"><div class="command-head"><h3>A3. 연결·컴파일</h3><button data-copy="lab2">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 체인과 계정 확인, 작성한 Solidity 컴파일</p><pre tabindex="0"><code id="lab2">var {wallet,recipient,provider,pcl,coder,Contract,ContractFactory,Interface,parseEther,ZeroAddress,ZeroHash,id,compile,send,decode,easTools} = await import(&#x27;./workshop/terminal/context.mjs&#x27;);
+console.log(String((await provider.getNetwork()).chainId), wallet.address, recipient);
+var artifact = compile();
+console.log(artifact.abi.map(x =&gt; x.name).filter(Boolean));</code></pre><p class="result">확인: 450815, 본인 지급자·수취인 주소, pay·owner·paymentCount 확인. 제공된 <a href="https://github.com/nubro999/maroo-devrel-workshop/blob/main/workshop/terminal/context.mjs">context 코드</a>는 연결·컴파일·전송만 돕고 거래를 자동 실행하지 않습니다.</p></article><article class="command"><div class="command-head"><h3>A4. 구현체와 프록시 배포</h3><button data-copy="lab3">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 초기화 데이터를 ABI 인코딩하고 PCL 등록 프록시를 배포</p><pre tabindex="0"><code id="lab3">var factory = new ContractFactory(artifact.abi, artifact.evm.bytecode.object, wallet);
+var deployed = await send(&#x27;implementation&#x27;, await factory.getDeployTransaction());
+var implementation = deployed.contractAddress;
+var api = new Interface(artifact.abi);
+var init = coder.encode([&#x27;address&#x27;,&#x27;address&#x27;,&#x27;bytes&#x27;], [implementation,wallet.address,api.encodeFunctionData(&#x27;initialize&#x27;,[wallet.address])]);
+var registered = await send(&#x27;proxy&#x27;, await pcl.deployPclProxy.populateTransaction(1,0n,init));
+var event = registered.logs.map(l =&gt; { try { return pcl.interface.parseLog(l); } catch { return null; } }).find(e =&gt; e?.name === &#x27;PclProxyDeployed&#x27;);
+var proxy = event.args.proxy;
+var app = new Contract(proxy,artifact.abi,wallet);
+console.log(proxy, await app.owner(), await pcl.pclProxy(proxy));</code></pre><p class="result">확인: 프록시 주소와 owner를 기록하세요. 프록시를 호출해야 해당 컨트랙트 정책이 적용됩니다.</p></article></details><details class="lesson"><summary>B · PCL 정책 작성·검증</summary><article class="command"><div class="command-head"><h3>B1. 함수별 Denylist 정책 작성</h3><button data-copy="lab4">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: templateId·ABI 인코딩한 policy·pay의 selector를 직접 구성</p><pre tabindex="0"><code id="lab4">var policyFor = addresses =&gt; ({
+  _contract: proxy, admin: wallet.address,
+  policies: [{templateId:&#x27;DENYLIST_POLICY&#x27;,
+    policy:coder.encode([&#x27;tuple(address[] addresses)&#x27;],[{addresses}]),
+    selector:api.getFunction(&#x27;pay&#x27;).selector}]
+});
+await send(&#x27;allow&#x27;,await pcl.changeContractPolicies.populateTransaction(policyFor([])));
+console.log(await pcl.contractPolicies(proxy));</code></pre><p class="result">확인: 빈 차단 목록을 조회하세요. 이 코드는 기존 템플릿에 설정값을 넣는 실습이며 PCL 엔진을 새로 구현하는 것은 아닙니다.</p></article><article class="command"><div class="command-head"><h3>B2. 지급 결과 검증 코드 작성</h3><button data-copy="lab5">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 영수증 status뿐 아니라 수취인 잔액·지급 횟수를 비교</p><pre tabindex="0"><code id="lab5">var checkPayment = async (label, expectedStatus) =&gt; {
+  var balance = await provider.getBalance(recipient);
+  var count = await app.paymentCount();
+  var tx = await app.pay.populateTransaction(recipient,{value:parseEther(&#x27;0.001&#x27;)});
+  var receipt = await send(label,tx,expectedStatus === 0 ? 500000n : undefined);
+  var delta = (await provider.getBalance(recipient)) - balance;
+  var countDelta = (await app.paymentCount()) - count;
+  console.log({status:receipt.status,recipientDelta:String(delta),countDelta:String(countDelta)});
+  if (receipt.status !== expectedStatus || delta !== (expectedStatus === 1 ? parseEther(&#x27;0.001&#x27;) : 0n) || countDelta !== BigInt(expectedStatus)) throw Error(&#x27;Unexpected payment result&#x27;);
+};
+await checkPayment(&#x27;allowed-payment&#x27;,1);</code></pre><p class="result">확인: status 1 · recipientDelta 1000000000000000 · countDelta 1. 먼저 성공 결과를 확인한 다음 차단 조건을 바꾸세요.</p></article><article class="command"><div class="command-head"><h3>B3. 송신자를 차단하고 같은 요청 비교</h3><button data-copy="lab6">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 목록에 지급자를 추가하고 오류·상태 불변을 확인</p><pre tabindex="0"><code id="lab6">await send(&#x27;deny&#x27;,await pcl.changeContractPolicies.populateTransaction(policyFor([wallet.address])));
+try { await app.pay.staticCall(recipient,{value:parseEther(&#x27;0.001&#x27;)}); } catch(e) { console.log(decode(e)); }
+await checkPayment(&#x27;denied-payment&#x27;,0);
+await send(&#x27;restore-allow&#x27;,await pcl.changeContractPolicies.populateTransaction(policyFor([])));</code></pre><p class="result">확인: InDenylist · status 0 · 잔액·횟수 증가 0. 마지막 줄은 직접 복원하는 단계입니다.</p></article></details><details class="lesson"><summary>C · EAS 발급·폐기·검증</summary><article class="command"><div class="command-head"><h3>C1. EAS 스키마와 정책 작성</h3><button data-copy="lab7">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 증명의 스키마를 등록하고 EAS_POLICY 설정값을 작성</p><pre tabindex="0"><code id="lab7">var {addresses,registry,eas,indexer} = await easTools();
+var {solidityPackedKeccak256} = await import(&#x27;ethers&#x27;);
+var schemaText = &#x27;bool workshopDemoEligible, bytes32 run&#x27;+Date.now();
+var schemaUID = solidityPackedKeccak256([&#x27;string&#x27;,&#x27;address&#x27;,&#x27;bool&#x27;],[schemaText,ZeroAddress,true]);
+await send(&#x27;schema&#x27;,await registry.register.populateTransaction(schemaText,ZeroAddress,true));
+var easPolicy = {_contract:proxy,admin:wallet.address,policies:[{
+  templateId:&#x27;EAS_POLICY&#x27;,selector:api.getFunction(&#x27;pay&#x27;).selector,
+  policy:coder.encode([&#x27;tuple(address easContract,address indexContract,bytes32 schemaUid)&#x27;],[{easContract:addresses.eas,indexContract:addresses.indexer,schemaUid:schemaUID}])
+}]};
+await send(&#x27;bind-eas&#x27;,await pcl.changeContractPolicies.populateTransaction(easPolicy));
+await checkPayment(&#x27;missing-credential&#x27;,0);</code></pre><p class="result">확인: 증명이 없으므로 지급 차단. 정책 목록은 EAS로 교체됩니다. 기존 Denylist와 동시 조합하지 않습니다.</p></article><article class="command"><div class="command-head"><h3>C2. 증명 발급·인덱싱 후 지급</h3><button data-copy="lab8">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 증명 대상·만료 시각·데이터를 구성하고 UID를 인덱싱</p><pre tabindex="0"><code id="lab8">var expiry = BigInt((await provider.getBlock(&#x27;latest&#x27;)).timestamp + 3600);
+var issued = await send(&#x27;attest&#x27;,await eas.attest.populateTransaction({schema:schemaUID,data:{
+  recipient:wallet.address,expirationTime:expiry,revocable:true,refUID:ZeroHash,
+  data:coder.encode([&#x27;bool&#x27;,&#x27;bytes32&#x27;],[true,id(&#x27;workshop&#x27;)]),value:0n
+}}));
+var attested = issued.logs.map(l=&gt;{try{return eas.interface.parseLog(l)}catch{return null}}).find(e=&gt;e?.name===&#x27;Attested&#x27;);
+var uid = attested.args.uid;
+console.log(await eas.getAttestation(uid));
+if (!(await indexer.isAttestationIndexed(uid))) await send(&#x27;index&#x27;,await indexer.indexAttestation.populateTransaction(uid));
+await checkPayment(&#x27;credentialed-payment&#x27;,1);</code></pre><p class="result">확인: status 1 · 수취인 잔액 증가. 자체 발급 실습 자격입니다. bool=true를 강제하거나 은행 발급자를 제한한 구현은 아닙니다.</p></article><article class="command"><div class="command-head"><h3>C3. 증명 폐기 후 다시 검증</h3><button data-copy="lab9">복사</button></div><p class="result"><strong>Node 콘솔</strong><br>직접 할 부분: 같은 증명을 폐기하고 같은 지급을 다시 요청</p><pre tabindex="0"><code id="lab9">await send(&#x27;revoke&#x27;,await eas.revoke.populateTransaction({schema:schemaUID,data:{uid,value:0n}}));
+console.log(&#x27;revocationTime:&#x27;,String((await eas.getAttestation(uid)).revocationTime));
+try { await app.pay.staticCall(recipient,{value:parseEther(&#x27;0.001&#x27;)}); } catch(e) { console.log(decode(e)); }
+await checkPayment(&#x27;revoked-payment&#x27;,0);
+await send(&#x27;restore-denylist&#x27;,await pcl.changeContractPolicies.populateTransaction(policyFor([])));
+provider.destroy();</code></pre><p class="result">확인: EasAttestationRevoked · status 0 · 잔액·횟수 증가 0. 복원 후 .exit로 Node 콘솔을 닫으세요.</p></article></details></section><section id="privacy"><h2>4. CLI로 직접 실행하는 Privacy</h2><p>D1–D2는 수업 전에 준비하고, 실습은 D3부터 시작합니다. 예치·지급·조회를 각각 직접 호출하며 회로·prover는 제공 구현을 사용합니다.</p><p class="fine">Docker 메모리 8GB 권장 · macOS 실기기 전체 실행은 미검증.</p><article class="command"><div class="command-head"><h3>D1. 로컬 노드 준비</h3><button data-copy="lab10">복사</button></div><p class="result"><strong>OS 터미널 A → 컨테이너 Bash</strong><br>직접 할 부분: 제공: 빌드·개발용 증명 자료·초기 계정. 지급은 아직 실행하지 않습니다.</p><pre tabindex="0"><code id="lab10">docker build -t maroo-privacy-lab -f demo/clairveil/container/Dockerfile demo/clairveil
+mkdir -p .private/privacy-terminal
+docker run --rm -it --init --name maroo-privacy-terminal \
   --mount type=volume,source=maroo-privacy-cache,target=/cache \
-  --mount &quot;type=bind,source=$PWD/.private/privacy-container,target=/results&quot; \
-  maroo-privacy-lab</code></pre><p class="result">처음에는 빌드·증명 자료 생성에 시간이 걸립니다. 창을 닫지 말고 PASS를 기다리세요.</p></article><article class="command" id="step07"><div class="command-head"><span class="num">07</span><h3>결과 확인</h3><button data-copy="c07">명령 복사</button></div><pre tabindex="0"><code id="c07">cat .private/privacy-container/PUBLIC_RESULT.json</code></pre><p class="result">result: PASS · Alice 3 · Bob 7 · repeatScanStable: true</p></article><p class="fine">다시 실행할 때는 06번부터 진행하세요. 캐시를 재사용하고 새 계정·체인으로 시작합니다.</p></section><footer><a href="https://github.com/nubro999/maroo-devrel-workshop">소스 코드</a><a href="https://explorer-testnet.maroo.io">거래 조회</a><a href="https://faucet.maroo.io">테스트 토큰 받기</a></footer></main><div id="toast" role="status" aria-live="polite"></div><script src="ethers.umd.min.js"></script><script src="app.js"></script></body></html>
+  --mount &quot;type=bind,source=$PWD/.private/privacy-terminal,target=/results&quot; \
+  --entrypoint bash maroo-privacy-lab</code></pre><p class="result">확인: 여기부터 컨테이너 안의 Bash입니다. macOS/Linux 모두 같은 명령을 사용합니다.</p></article><article class="command"><div class="command-head"><h3>D2. 준비된 노드를 직접 시작</h3><button data-copy="lab11">복사</button></div><p class="result"><strong>컨테이너 Bash · 터미널 A</strong><br>직접 할 부분: 노드 시작 명령의 RPC·체인 설정 확인</p><pre tabindex="0"><code id="lab11">/opt/lab/check-cpu
+python3 /opt/lab/prepare-terminal.py --source /opt/clairveil --run-dir &quot;/results/session-$(date +%s)&quot;
+source /results/ACTIVE.env
+&quot;$BIN&quot; start --home &quot;$NODE_HOME&quot; --audit-config &quot;$CONFIG&quot; --audit-artifacts &quot;$ARTIFACTS&quot; \
+  --rpc.laddr &quot;$RPC&quot; --p2p.laddr tcp://127.0.0.1:28656 \
+  --grpc.address 127.0.0.1:28658 --minimum-gas-prices 0uclair</code></pre><p class="result">확인: 터미널 A를 켜 둡니다. 노드 블록 생성 로그를 확인하고 새 터미널 B를 여세요.</p></article><article class="command"><div class="command-head"><h3>D3. CLI 접속과 공통 옵션 작성</h3><button data-copy="lab12">복사</button></div><p class="result"><strong>새 OS 터미널 B → 컨테이너 Bash</strong><br>직접 할 부분: 어느 계정·체인·노드로 보내는지 공통 옵션을 구성</p><pre tabindex="0"><code id="lab12">docker exec -it maroo-privacy-terminal bash</code></pre><p class="result">확인: 컨테이너 진입 후 다음 블록을 실행하세요.</p></article><article class="command"><div class="command-head"><h3>D4. 예치하고 포함 결과 확인</h3><button data-copy="lab13">복사</button></div><p class="result"><strong>컨테이너 Bash · 터미널 B</strong><br>직접 할 부분: Alice 예치 금액·계정·gas를 지정해 CLI 직접 호출</p><pre tabindex="0"><code id="lab13">source /results/ACTIVE.env
+COMMON=(--home &quot;$NODE_HOME&quot; --keyring-backend test --chain-id &quot;$CHAIN&quot; --node &quot;$RPC&quot;)
+&quot;$BIN&quot; status --node &quot;$RPC&quot;
+&quot;$BIN&quot; tx privacy deposit 10uclair --from alice &quot;${COMMON[@]}&quot; --gas 3500000 --gas-prices 0uclair --yes --output json &gt; /results/deposit.json
+cat /results/deposit.json
+DEPOSIT_TX=$(sed -n &#x27;/^{/,$p&#x27; /results/deposit.json | python3 -c &#x27;import json,sys;print(json.load(sys.stdin)[&quot;txhash&quot;])&#x27;)
+&quot;$BIN&quot; query tx &quot;$DEPOSIT_TX&quot; --node &quot;$RPC&quot; --output json</code></pre><p class="result">확인: tx가 아직 없으면 마지막 조회만 다시 실행하세요. 포함 결과의 code 0을 확인한 다음 진행합니다. 전송을 반복하지 마세요.</p></article><article class="command"><div class="command-head"><h3>D5. Bob 주소 조회 → 7 지급</h3><button data-copy="lab14">복사</button></div><p class="result"><strong>컨테이너 Bash · 터미널 B</strong><br>직접 할 부분: 수취인의 비공개 주소와 지급액을 직접 지정</p><pre tabindex="0"><code id="lab14">&quot;$BIN&quot; tx privacy list-notes --from alice &quot;${COMMON[@]}&quot; --json
+&quot;$BIN&quot; tx privacy show-address --from bob &quot;${COMMON[@]}&quot; --output json &gt; /results/bob-address.json
+BOB=$(python3 -c &#x27;import json;print(json.load(open(&quot;/results/bob-address.json&quot;))[&quot;address&quot;])&#x27;)
+&quot;$BIN&quot; tx privacy transfer &quot;$BOB&quot; 7uclair --from alice &quot;${COMMON[@]}&quot; --gas 9000000 --gas-prices 0uclair --yes --output json &gt; /results/transfer.json
+cat /results/transfer.json
+TRANSFER_TX=$(sed -n &#x27;/^{/,$p&#x27; /results/transfer.json | python3 -c &#x27;import json,sys;print(json.load(sys.stdin)[&quot;txhash&quot;])&#x27;)
+&quot;$BIN&quot; query tx &quot;$TRANSFER_TX&quot; --node &quot;$RPC&quot; --output json</code></pre><p class="result">확인: 예치 후 Alice 10. 최종 지급 거래의 포함 code 0 확인. CLI가 증명 생성과 준비 거래를 수행하며 몇 분 걸릴 수 있습니다.</p></article><article class="command"><div class="command-head"><h3>D6. 잔액과 반복 조회 비교</h3><button data-copy="lab15">복사</button></div><p class="result"><strong>컨테이너 Bash · 터미널 B</strong><br>직접 할 부분: 조회 결과를 파일로 저장하고 재조회 결과를 직접 비교</p><pre tabindex="0"><code id="lab15">&quot;$BIN&quot; tx privacy list-notes --from alice &quot;${COMMON[@]}&quot; --json &gt; /results/alice-after.json
+&quot;$BIN&quot; tx privacy list-notes --from bob &quot;${COMMON[@]}&quot; --json &gt; /results/bob-after.json
+&quot;$BIN&quot; tx privacy list-notes --from bob &quot;${COMMON[@]}&quot; --json &gt; /results/bob-repeat.json
+python3 - &lt;&lt;&#x27;CHECK&#x27;
+import json
+read = lambda name: json.load(open(&#x27;/results/&#x27;+name))[&#x27;summary&#x27;]
+a, b, again = read(&#x27;alice-after.json&#x27;), read(&#x27;bob-after.json&#x27;), read(&#x27;bob-repeat.json&#x27;)
+assert a[&#x27;total_spendable&#x27;] == &#x27;3&#x27;
+assert b[&#x27;total_spendable&#x27;] == &#x27;7&#x27;
+assert b == again
+print(&#x27;PASS: Alice 3 / Bob 7 / repeat scan stable&#x27;)
+CHECK</code></pre><p class="result">확인: 이 Python 검증을 직접 작성합니다. 원본 note 파일은 공유하지 마세요. 종료: 터미널 B에서 exit, A에서 Ctrl+C 후 exit.</p></article></section><footer><a href="https://github.com/nubro999/maroo-devrel-workshop">소스 코드</a><a href="https://explorer-testnet.maroo.io">거래 조회</a><a href="https://faucet.maroo.io">테스트 토큰 받기</a></footer></main><div id="toast" role="status" aria-live="polite"></div><script src="ethers.umd.min.js"></script><script src="app.js"></script></body></html>

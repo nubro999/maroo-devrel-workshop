@@ -259,3 +259,10 @@ console.log(error.name, error.args[0]);
 - Affected developer: 워크숍 참가자.
 - Severity: 높음 — 첫 실행에 도달하기 전에 이탈할 수 있음.
 - Suggested improvement: 순서대로 복사 가능한 명령, OS별 준비 안내, 로컬 계정 파일에서 .env 생성, 공통 Privacy 컨테이너.
+
+## DX014 — Privacy CLI JSON 앞에 prover 로그 출력
+- Problem: deposit --output json의 stdout에 gnark DBG 로그가 먼저 나와 json.load 전체 파싱이 실패한다.
+- Evidence: 직접 CLI 검증에서 예치 거래는 접수됐지만 txhash 추출 단계 JSONDecodeError 발생. 예치 재전송 없이 기존 출력 마지막 JSON 줄을 파싱해 복구.
+- Affected developer: CLI 실습 참가자와 자동화 작성자.
+- Severity: 중간 — 전송 결과를 오해하고 재전송할 위험.
+- Suggested improvement: 기계 판독 JSON은 stdout 단독 출력, 디버그 로그는 stderr. 단일 줄과 여러 줄 transaction JSON이 섞여 있어, 현재 CLI의 JSON 시작 줄부터 sed로 분리한다.

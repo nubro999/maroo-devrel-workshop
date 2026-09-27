@@ -707,3 +707,30 @@ PASS — 5개 입금 및 Docker 이미지 빌드. 전체 컨테이너 실행 결
 [Local] Linux amd64 Docker 이미지에서 새 체인·계정으로 예치 10, 지급 7, Alice 3/Bob 7, 반복 조회 일치를 확인했다. 기존 동일 버전 개발용 artifacts와 호스트 Go 캐시를 마운트해 검증했으며, 새 컨테이너의 전체 첫 artifact 생성은 이번 검증 범위가 아니다. 증거: evidence/local/CONTAINER_PRIVACY_RESULT.json.
 [Local] Playwright로 OS 탭, 명령 복사, 계정 파일 주소/키 검증, .env 복사와 다운로드, 계정 닫기, 잘못된 파일 거절, 모바일 overflow와 JS 오류를 검사했다. 배포된 Vercel에서도 주요 기능 PASS. 공개 사이트 CSP connect-src none으로 계정 데이터 네트워크 전송 차단.
 [Docs Only] 고정 upstream secretprofile은 Linux/Darwin, amd64 AES/PCLMULQDQ 및 arm64 AES/PMULL/DIT를 요구한다. CPU 사전 검사를 추가했다. macOS 실기기·ARM64 전체 실행 NOT TESTED.
+
+## 024 — 직접 작성·호출하는 터미널 실습
+
+### Goal
+[Submission: Workshop] 완성 runner 실행 중심에서 참가자가 직접 코드와 명령을 작성하는 실습으로 바꾼다.
+
+### Initial Hypothesis
+[AI Hypothesis] 비즈니스 로직·정책·검증을 직접 작성하고 기반 설정만 제공하면 학습 대상을 구분할 수 있다.
+
+### Source Grounding
+[Docs Only] 기존 검증된 Solidity·공식 ABI·고정 Clairveil CLI. 직접 작성 범위는 pay·정책 구성·EAS 요청·검증이며 PCL 엔진이나 영지식 회로 개발은 아니다.
+
+### Execution
+[Live Testnet] TERMINAL_LAB의 Node 코드 블록을 순서대로 실행하여 새 구현체·프록시를 배포하고 허용/차단, 없음/유효/폐기 지급과 마지막 정책 복원까지 확인했다. 참가자 5세트 자금은 사용하지 않았다.
+[Local] Privacy 준비 프로그램은 초기화 후 종료하며 송금을 하지 않는다. 이후 참가자가 노드 시작·deposit·transfer·query·list-notes를 각각 실행하도록 명령을 제공했다.
+
+### Result
+PASS — PCL/EAS 터미널 예시의 실제 거래 결과. Linux Docker에서 Privacy CLI를 개별 실행해 deposit/transfer 포함 결과 code 0, Alice 3 / Bob 7, 재조회 일치를 확인했다. evidence/local/MANUAL_CLI_RESULT.json에 공개 결과를 저장했다. 사이트 계정 입력·복사·다운로드·모바일 화면 검사도 통과했다.
+
+### Diagnosis
+자동 완성 runner가 핵심 개념과 참가자가 작성할 코드를 가렸다. 연결·컴파일·단일 전송은 보조 코드로 분리하고 정책 선택과 호출은 코드 블록에 노출했다.
+
+### Next Step
+동일한 Docker CLI 경로를 macOS/Linux에 제공한다. Mac 실기기 실행은 아직 미검증.
+
+### Human Judgment
+사용자는 기술을 이해하도록 프로그램 실행 대신 직접 터미널 테스트를 하고, 직접 작성할 부분을 표시하도록 요청했다.
