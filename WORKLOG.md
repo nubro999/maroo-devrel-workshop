@@ -568,3 +568,30 @@ PASS — 슬라이드·사이트 소스·배포. NOT TESTED — 전체 참가자
 
 ### Human Judgment
 사용자가 아키텍처 도식과 체험·참고 링크를 요구하고, 페이지 수를 줄이며 실습 커맨드를 웹사이트로 분리하기로 결정했다.
+
+
+## 019 — White × Maroo 시각 개편 (2026-09-27)
+
+### Goal
+[Workshop Design] 사용자가 요청한 Canva 스타일과 화이트·Maroo 코어 색 조합을 슬라이드·실습 사이트에 반영한다.
+
+### Initial Hypothesis
+[AI Hypothesis] 큰 제목·여백·페이지별 다른 레이아웃이 기존 반복 카드보다 발표 흐름을 명확하게 보여줄 것으로 설계했다. 사용자 선호 최종 확인 전이다.
+
+### Source Grounding
+[Docs Only] https://www.maroo.io/en 에서 CSS의 --teal:#0096aa, --orange:#ff8c50 및 --teal-dark:#007a8a를 확인했다. 공식 브랜드 매뉴얼 확보를 주장하지 않는다.
+
+### Execution
+[Local] 워크숍 10장·영상 7장 PDF/PPTX에 흰 배경, 청록·주황 강조, 큰 표지·결과 숫자, 둥근 도식과 열린 비교 레이아웃을 적용했다. 워크숍 PDF 전체 미리보기와 영상 표지를 확인했다. 사이트 CSS와 favicon만 변경, JS 구문 검사 및 로컬 HTTP 200 확인.
+
+### Result
+PASS — 시각 자료·사이트 테마 변경. 상태 변경 거래·실습 결과 변경 없음. 사용자 최종 디자인 선호는 확인 전.
+
+### Diagnosis
+[Workshop Design] Canva 스타일은 시각 참고이며 실제 Canva 편집기 사용으로 표기하지 않는다. 사이트 접근 범위는 기존 본인 전용 설정을 유지한다.
+
+### Next Step
+지원자가 새 PDF와 편집용 PPTX로 발표를 검토한다. 실제 영상 녹화는 여전히 미완료다.
+
+### Human Judgment
+사용자가 이전 디자인을 거절하고 화이트·Maroo 코어 색 조합과 Canva 스타일을 명시했다.
