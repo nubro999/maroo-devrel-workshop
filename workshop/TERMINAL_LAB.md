@@ -38,7 +38,7 @@ cp workshop/terminal/Payment.todo.sol .private/terminal/Payment.sol
 **작성/조작할 부분:** 이후 JavaScript는 Node의 > 프롬프트에 입력합니다.
 
 ```bash
-node --env-file=.env
+env -u MAROO_PRIVATE_KEY -u MAROO_RECIPIENT node --env-file=.env
 ```
 
 **확인:** 이 콘솔을 유지하세요. OS 명령으로 돌아갈 때는 .exit를 입력합니다.

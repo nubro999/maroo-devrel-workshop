@@ -7,7 +7,10 @@ const require=createRequire(import.meta.url);const {iPclAbi}=require('@maroo-cha
 export {Contract,ContractFactory,Interface,parseEther,ZeroAddress,ZeroHash,id};
 const request=new FetchRequest('https://rpc-testnet.maroo.io');request.timeout=20000;
 export const provider=new JsonRpcProvider(request,undefined,{batchMaxCount:1,cacheTimeout:-1});
-export const wallet=new Wallet(process.env.MAROO_PRIVATE_KEY,provider);
+let configuredWallet;
+try { configuredWallet=new Wallet(process.env.MAROO_PRIVATE_KEY,provider); }
+catch { provider.destroy(); throw Error('계정 설정이 필요합니다. .exit → npm run setup:account → 새 Node 콘솔에서 A3 첫 줄부터 실행하세요.'); }
+export const wallet=configuredWallet;
 export const recipient=process.env.MAROO_RECIPIENT;
 export const coder=AbiCoder.defaultAbiCoder();
 export const pcl=new Contract('0x1000000000000000000000000000000000000005',iPclAbi,wallet);
