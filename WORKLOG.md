@@ -649,3 +649,29 @@ PASS — 사용자 PCL 로그·로컬 결과 파일 대조와 문서 반영. 이
 
 ### Human Judgment
 사용자가 PCL 스크립트를 직접 실행하고 정상/거절 거래를 열어 확인했다. 가스 단위와 실패 수수료 설명을 문서화하고 산출물 전반의 문장을 다듬도록 요청했다.
+
+## 022 — 승인 상태 중심으로 핵심 시연 재구성 (2026-09-27)
+
+### Goal
+[Submission: Workshop] 미승인 차단 → 승인 후 지급 → 승인 취소 후 차단을 핵심 시연으로 구성한다.
+
+### Initial Hypothesis
+[AI Hypothesis] 발급·폐기 상태와 지급 결과를 연결하면 승인 정책의 효과를 명확히 설명할 수 있다.
+
+### Source Grounding
+[Live Testnet] 기존 EAS_LIFECYCLE 증거의 없음(status 0), 유효(status 1), 폐기(status 0)를 사용한다. false/true 모두 성공한 기존 결과는 삭제하거나 반대로 표현하지 않는다.
+
+### Execution
+[Local] 10장 워크숍, 7장 영상 자료와 대본, 참가자·진행자 가이드, 사이트를 같은 흐름으로 수정했다. bool 비교는 POLICY_CAVEATS와 사이트의 접힌 선택 실험에 남겼다.
+
+### Result
+기존 실행 근거에 맞춰 설명을 수정했다. 새 거래 전송이나 approved=false 차단 구현은 하지 않았다.
+
+### Diagnosis
+승인을 유효 자격 보유로 모델링한다. 자체 발급 실습이며 신뢰할 발급자 제한과 실제 KYB는 검증하지 않았다.
+
+### Next Step
+핵심 시연은 EAS 수명주기 실행 결과의 영수증과 수신자 증가량을 비교한다.
+
+### Human Judgment
+사용자가 false 통과를 핵심 시연으로 삼는 것에 이의를 제기하고, 승인 상태 중심 재구성을 요청했다.
