@@ -702,3 +702,8 @@ PASS — 5개 입금 및 Docker 이미지 빌드. 전체 컨테이너 실행 결
 
 ### Human Judgment
 사용자는 macOS/Linux 모두 전체 실습을 진행할 수 있어야 하며, 5세트를 준비하도록 지정했다.
+
+### 023 검증 완료
+[Local] Linux amd64 Docker 이미지에서 새 체인·계정으로 예치 10, 지급 7, Alice 3/Bob 7, 반복 조회 일치를 확인했다. 기존 동일 버전 개발용 artifacts와 호스트 Go 캐시를 마운트해 검증했으며, 새 컨테이너의 전체 첫 artifact 생성은 이번 검증 범위가 아니다. 증거: evidence/local/CONTAINER_PRIVACY_RESULT.json.
+[Local] Playwright로 OS 탭, 명령 복사, 계정 파일 주소/키 검증, .env 복사와 다운로드, 계정 닫기, 잘못된 파일 거절, 모바일 overflow와 JS 오류를 검사했다. 배포된 Vercel에서도 주요 기능 PASS. 공개 사이트 CSP connect-src none으로 계정 데이터 네트워크 전송 차단.
+[Docs Only] 고정 upstream secretprofile은 Linux/Darwin, amd64 AES/PCLMULQDQ 및 arm64 AES/PMULL/DIT를 요구한다. CPU 사전 검사를 추가했다. macOS 실기기·ARM64 전체 실행 NOT TESTED.

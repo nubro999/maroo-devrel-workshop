@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+/opt/lab/check-cpu
 mkdir -p /results /cache
 if [[ "${LAB_UID:-}" =~ ^[0-9]+$ && "${LAB_GID:-}" =~ ^[0-9]+$ ]]; then
   trap 'chown -R "$LAB_UID:$LAB_GID" /results' EXIT
