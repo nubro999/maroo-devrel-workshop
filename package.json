@@ -21,7 +21,8 @@
     "privacy:abi": "node scripts/verify-privacy-abi.mjs",
     "lab:pcl": "node demo/pcl/run.mjs",
     "lab:eas": "node demo/pcl/eas-run.mjs",
-    "lab:boolean": "node demo/pcl/eas-boolean.mjs"
+    "lab:boolean": "node demo/pcl/eas-boolean.mjs",
+    "setup:account": "node scripts/setup-account.mjs"
   },
   "dependencies": {
     "@maroo-chain/contracts": "0.0.9",
